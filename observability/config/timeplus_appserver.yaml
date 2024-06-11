@@ -1,0 +1,17 @@
+console-app-url: http://0.0.0.0:4000
+onboarding-app-url: http://0.0.0.0:4000
+enable-access-log: true
+enable-audit-log: true
+log-level: info
+logger-level: info
+orbit-addr: 0.0.0.0:4196
+orbit-proton-hostname: localhost
+proton-addr: localhost
+proton-metrics-addr: localhost
+server-internal-addr: 0.0.0.0
+tenant-manager: local
+auth-provider: proton
+enable-authentication: false
+proton-admin-username: proton
+proton-username: default
+neutron-user-proton-username: default

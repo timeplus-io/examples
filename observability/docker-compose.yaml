@@ -1,0 +1,86 @@
+services:
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.2.5.1
+    container_name: timeplus
+    ports:
+      - "8000:8000" # Neutron
+    environment:
+      - MAX_CONCURRENT_QUERIES=100 # Default: 100
+      - MAX_CONCURRENT_SELECT_QUERIES=100 # Default: 100
+      - MAX_CONCURRENT_INSERT_QUERIES=100 # Default: 100
+      - MAX_CONCURRENT_STREAMING_QUERIES=100 # Default: 100
+      - MAX_SERVER_MEMORY_USAGE_TO_RAM_RATIO=0.95 # Default: 0.9
+      - MAX_SERVER_MEMORY_CACHE_TO_RAM_RATIO=0.5 # Default: 0.5
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:3218/proton/ping"]
+      interval: 2s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - timeplus_data:/timeplus/data/
+      - timeplus_logs:/timeplus/logs/
+      - ./config/timeplus_appserver.yaml:/timeplus/conf/timeplus_appserver.yaml
+
+  grafana:
+    image: grafana/grafana-oss
+    container_name: grafana
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=grafana
+    volumes:
+      - ./grafana:/etc/grafana/provisioning/datasources
+      - grafana_data:/var/lib/grafana
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.enable-remote-write-receiver'
+    ports:
+      - 9090:9090
+    restart: unless-stopped
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - prom_data:/prometheus
+
+  init_timeplus_resources:
+    command:
+      - proton-client
+      - -h
+      - timeplus
+      - --queries-file
+      - /script/init_timeplus.sql
+    image: ghcr.io/timeplus-io/proton:latest
+    profiles: [init]
+    volumes:
+      - ./script:/script
+    depends_on:
+      timeplus:
+        condition: service_healthy
+
+  init_timeplus_dashboard_monitor:
+    command:
+      - -d@/dashboard/system_monitor.json
+      - http://timeplus:8000/local/api/v1beta2/dashboards
+    image: curlimages/curl:8.7.1
+    profiles: [init]
+    volumes:
+      - ./dashboard:/dashboard
+    depends_on:
+      init_timeplus_resources:
+        condition: service_completed_successfully
+
+volumes:
+  timeplus_data:
+    driver: local
+  timeplus_logs:
+    driver: local
+  prom_data:
+    driver: local
+  grafana_data:
+    driver: local
