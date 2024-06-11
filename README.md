@@ -1,2 +1,3 @@
-# examples
-Timeplus enterprise samples and demos
+# Timeplus Enterprise examples
+
+This repo contains Timeplus enterprise samples and demos
