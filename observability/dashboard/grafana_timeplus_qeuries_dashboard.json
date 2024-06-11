@@ -35,7 +35,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -86,7 +86,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "sum(ProtonMetrics_Query{})",
@@ -101,7 +101,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -152,7 +152,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "sum(rate(ProtonQueryInfo_ScanEvents{}[1m]))",
@@ -168,7 +168,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -219,7 +219,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "sum(rate(ProtonQueryInfo_OutputEvents{}[1m]))",
@@ -234,7 +234,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -314,7 +314,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "topk(10, rate(ProtonQueryInfo_ScanBytes[1m]))",
@@ -329,7 +329,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -409,7 +409,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "topk(10, rate(ProtonQueryInfo_MemoryUsageBytes[1m]))",
@@ -424,7 +424,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -504,7 +504,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "topk(10, rate(ProtonQueryInfo_OutputBytes[1m]))",
@@ -533,7 +533,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -613,7 +613,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "ProtonQueryInfo_PeakMemoryUsageBytes{id=~\"$queries\"}",
@@ -624,7 +624,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "ProtonQueryInfo_MemoryUsageBytes{id=~\"$queries\"}",
@@ -641,7 +641,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -721,7 +721,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "ProtonQueryInfo_ElapsedMicroseconds{id=~\"$queries\"}",
@@ -737,7 +737,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "description": "",
             "fieldConfig": {
@@ -818,7 +818,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "rate(ProtonQueryInfo_ScanEvents{id=~\"$queries\"}[1m])",
@@ -833,7 +833,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "description": "",
             "fieldConfig": {
@@ -914,7 +914,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "rate(ProtonQueryInfo_OutputEvents{id=~\"$queries\"}[1m])",
@@ -931,7 +931,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -1011,7 +1011,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "rate(ProtonQueryInfo_ScanBytes{id=~\"$queries\"}[1m])",
@@ -1026,7 +1026,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -1106,7 +1106,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "rate(ProtonQueryInfo_OutputBytes{id=~\"$queries\"}[1m])",
@@ -1137,7 +1137,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -1256,7 +1256,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "exemplar": false,
@@ -1272,7 +1272,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -1353,7 +1353,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "(rate(ProtonProfileEvents_UserTimeMicroseconds{}[1m]) + rate(ProtonProfileEvents_SystemTimeMicroseconds{}[1m]))/1000000",
@@ -1368,7 +1368,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -1449,7 +1449,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "rate(ProtonProfileEvents_RaftServerSendBytes{}[1m])",
@@ -1464,7 +1464,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "sum(rate(ProtonProfileEvents_RaftServerSendBytes{}[1m]))",
@@ -1477,7 +1477,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "rate(ProtonProfileEvents_RaftClientSendBytes{}[1m])",
@@ -1490,7 +1490,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "sum(rate(ProtonProfileEvents_RaftClientSendBytes{}[1m]))",
@@ -1507,7 +1507,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -1588,7 +1588,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "exemplar": false,
@@ -1603,7 +1603,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "sum(rate(ProtonProfileEvents_RaftServerReceiveBytes{}[1m]))",
@@ -1616,7 +1616,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "rate(ProtonProfileEvents_RaftClientReceiveBytes{}[1m])",
@@ -1629,7 +1629,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "sum(rate(ProtonProfileEvents_RaftClientReceiveBytes{}[1m]))",
@@ -1646,7 +1646,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -1726,7 +1726,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "sum by(pod_name)({__name__=~\"ProtonAsyncMetrics_BlockWriteOps.*\"})",
@@ -1741,7 +1741,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -1830,7 +1830,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "ProtonAsyncMetrics_MemoryResident{}",
@@ -1845,7 +1845,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "description": "",
             "fieldConfig": {
@@ -1927,7 +1927,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "ProtonMaterializedView_QueryStatus{}",
@@ -1944,7 +1944,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -2025,7 +2025,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "sum by(pod_name)({__name__=~\"ProtonAsyncMetrics_BlockWriteBytes.*\"})",
@@ -2040,7 +2040,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -2120,7 +2120,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "ProtonMaterializedView_CheckpointDiskUsage",
@@ -2135,7 +2135,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "description": "",
             "fieldConfig": {
@@ -2236,7 +2236,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "topk(10, ProtonMaterializedView_QueryRecovery{})",
@@ -2251,7 +2251,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -2356,7 +2356,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "ProtonMaterializedView_StorageSize",
@@ -2371,7 +2371,7 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "PBFA97CFB590B2093"
             },
             "fieldConfig": {
               "defaults": {
@@ -2451,7 +2451,7 @@
               {
                 "datasource": {
                   "type": "prometheus",
-                  "uid": "edo3urd0nde68a"
+                  "uid": "PBFA97CFB590B2093"
                 },
                 "editorMode": "code",
                 "expr": "sum(ProtonMaterializedView_CheckpointDiskUsage)",
