@@ -10,11 +10,11 @@ To run this examples, you need have `docker` , and `make` installed in your syst
 
 To start the stack run `make start_init` which will start Timeplus enterprise, Prometheus and Grafana using docker compose, and it will initialize observability release resources in Timeplus.  Run `make stop` to stop the whole stack and run `make start` if you already initialized the resoruces before.   Run `make clean` to delete all data volumes and unused docker resources.
 
-After start, the timeplus is running at `http://localhost:8000`.  Grafana is running on `http://localhost:3000` with username `admin`, password `grafana`.  
+After start, the timeplus is running at `http://localhost:8000`.  Grafana is running on `http://localhost:3000` with username `admin`, password `grafana`.
 
 ## Metrics and Logs collection configurations
 
-Timeplus enterprise metrics is expose as Prometheus endpoint at `http://timeplus_host:9363/metrics`, a prometheus scraper is configured in `./prometheus/prometheus.yml`. 
+Timeplus enterprise metrics is expose as Prometheus endpoint at `http://timeplus_host:9363/metrics`, a prometheus scraper is configured in `./prometheus/prometheus.yml`.
 
 A promtheus datasource is configured at `./grafana/datasource.yml`, so user should be able to explore all the Timeplus metrics in Grafana after login to grafana
 
@@ -28,7 +28,7 @@ To mointor logs, try run 'select * from timeplusd_log' from console UI or CLI.
 
 ## Grafana Dashboard
 
-Two sample dashboards are provided in json model.  user can create new dashboard by importing these two jsons `./dashboard/grafana_timeplus_qeuries_dashboard.json` and `./dashboard/grafana_timeplus_external_streams_dashboard.json`
+Two sample dashboards are provided in json model.  user can create new dashboard by importing these two jsons `./dashboard/grafana_timeplus_queries_dashboard.json` and `./dashboard/grafana_timeplus_external_streams_dashboard.json`
 
 Note due to the datasource id is dynamically generated, user can find the datasource uuid using grafana API and replace all premetheus UUID in the dashboard and then import it.
 
