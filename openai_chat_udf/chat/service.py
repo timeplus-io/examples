@@ -18,12 +18,6 @@ class ChatItem(BaseModel):
     temperature: List[float]
 
 
-class ContextChatItem(BaseModel):
-    input: List[str]
-    temperature: List[float]
-    user: List[str]
-
-
 class PredictItem(BaseModel):
     input: List[str]
 

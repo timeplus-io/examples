@@ -1,0 +1,22 @@
+{
+    "name": "chat",
+    "description": "chat udf",
+    "return_type": "string",
+    "url": "http://chat:5001/chat",
+    "type": "remote",
+    "arguments": [
+        {
+            "name": "input",
+            "type": "string"
+        },
+        {
+            "type": "float64",
+            "name": "temperature"
+        }
+    ],
+    "auth_context": {
+        "key_name": "",
+        "key_value": ""
+    },
+    "auth_method": "none"
+}

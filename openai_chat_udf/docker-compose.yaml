@@ -1,0 +1,38 @@
+services:
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.3.5
+    environment:
+    - ENABLE_AUTHENTICATION=false
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:3218/timeplusd/ping"]
+      interval: 2s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  chat:
+    image: timeplus/chatudf:latest
+    ports:
+      - "5001:5001"
+    environment:
+    - OPENAI_API_KEY=${OPENAI_API_KEY}
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:5001/"]
+      interval: 2s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+  
+  init_udf:
+    image: curlimages/curl
+    volumes:
+      - ./script/udf.json:/payload.json
+    command: >
+      sh -c "sleep 3 && curl -X POST -H 'Content-Type: application/json' -d @/payload.json http://timeplus:8000/local/api/v1beta2/udfs"
+    depends_on:
+      timeplus:
+        condition: service_healthy
+      chat:
+        condition: service_healthy
