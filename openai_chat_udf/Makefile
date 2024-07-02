@@ -3,6 +3,7 @@ BIN_NAME = chatudf
 IMAGE_NAME = $(BIN_NAME):$(VERSION)
 DOCKER_ID_USER = timeplus
 FULLNAME=$(DOCKER_ID_USER)/${IMAGE_NAME}
+FULLNAME_LATEST=$(DOCKER_ID_USER)/$(BIN_NAME):latest
 
 .PHONY: test teste
 
@@ -24,3 +25,5 @@ docker_run:
 push:
 	docker tag $(IMAGE_NAME) $(FULLNAME)
 	docker push $(FULLNAME)
+	docker tag $(IMAGE_NAME) $(FULLNAME_LATEST)
+	docker push $(FULLNAME_LATEST)
