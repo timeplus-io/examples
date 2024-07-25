@@ -1,8 +1,9 @@
 services:
   timeplus:
-    image: timeplus/timeplus-enterprise:2.3.5
+    image: timeplus/timeplus-enterprise:2.4.10
     environment:
-    - ENABLE_AUTHENTICATION=false
+    - ENABLE_AUTHENTICATION=true
+    - TIMEPLUSD_ADMIN_PASSWORD=Password!
     ports:
       - "8000:8000"
     healthcheck:
@@ -24,15 +25,27 @@ services:
       timeout: 10s
       retries: 3
       start_period: 10s
-  
+
   init_udf:
-    image: curlimages/curl
+    image: timeplus/timeplus-enterprise:2.4.10
+    entrypoint: >
+      /bin/bash -c "timeplusd client -h timeplus --queries-file=/udf.sql"
     volumes:
-      - ./script/udf.json:/payload.json
-    command: >
-      sh -c "sleep 3 && curl -X POST -H 'Content-Type: application/json' -d @/payload.json http://timeplus:8000/local/api/v1beta2/udfs"
+      - ./script/udf.sql:/udf.sql
     depends_on:
       timeplus:
         condition: service_healthy
       chat:
         condition: service_healthy
+  
+  # init_udf:
+  #   image: curlimages/curl
+  #   volumes:
+  #     - ./script/udf.json:/payload.json
+  #   command: >
+  #     sh -c "sleep 3 && curl -X POST -H 'Content-Type: application/json' -d @/payload.json http://timeplus:8000/local/api/v1beta2/udfs"
+  #   depends_on:
+  #     timeplus:
+  #       condition: service_healthy
+  #     chat:
+  #       condition: service_healthy
