@@ -1,0 +1,16 @@
+input:
+  proton:
+    proton_addr: localhost
+    query_id: "test_nats_tp_sink"
+    source_mv: mv_device_5s
+    ckpt_interval: 10
+    ckpt_type: none
+pipeline:
+  threads: 1
+output:
+  label: ""
+  nats:
+    urls:
+      - nats://nats-server:4222
+    subject: test_topic
+    max_in_flight: 64

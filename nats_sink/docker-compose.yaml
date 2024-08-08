@@ -1,0 +1,33 @@
+services:
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.4.16
+    container_name: timeplus-server
+    environment:
+    - ENABLE_AUTHENTICATION=false
+    - ENABLE_DATA_PREALLOCATE=false
+    ports:
+      - "8000:8000"
+      - "4195:4195"
+      - "8463:8463"
+    volumes:
+      - timeplus_data:/timeplus/data/
+      - ./script:/script/
+    healthcheck:
+        test: ["CMD", "curl", "http://localhost:3218/proton/ping"]
+        interval: 2s
+        timeout: 10s
+        retries: 3
+        start_period: 10s
+  
+  nats:
+    container_name: nats-server
+    image: nats:latest
+    ports:
+      - "4222:4222"
+      - "6222:6222"
+      - "8222:8222"
+
+volumes:
+  timeplus_data:
+    driver: local
+  
