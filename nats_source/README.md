@@ -29,3 +29,5 @@ The format `json` will try to map the json schema and save related fields into t
 both `stream` and `source` can be managed through RESTFul API, refer to
 - `stream` API https://docs.timeplus.com/rest.html#tag/Streams-v1beta2
 - `source` API https://docs.timeplus.com/rest.html#tag/Sources-v1beta2 
+
+for supported source and source properties, refer to https://docs.timeplus.com/source 
