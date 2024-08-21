@@ -1,0 +1,49 @@
+services:
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.4.19
+    environment:
+    - ENABLE_AUTHENTICATION=false
+    - TIMEPLUSD_ADMIN_PASSWORD=Password!
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:3218/timeplusd/ping"]
+      interval: 2s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  cepllm:
+    image: cepllm:9bfe3dc
+    ports:
+      - "5001:5001"
+    environment:
+    - OPENAI_API_KEY=${OPENAI_API_KEY}
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:5001/"]
+      interval: 2s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  init_sql:
+    image: timeplus/timeplus-enterprise:2.4.19
+    entrypoint: >
+      /bin/bash -c "timeplusd client -h timeplus --queries-file=/init.sql"
+    volumes:
+      - ./script/init.sql:/init.sql
+    depends_on:
+      timeplus:
+        condition: service_healthy
+      cepllm:
+        condition: service_healthy
+
+  init_source:
+    image: curlimages/curl
+    volumes:
+      - ./script/source.json:/payload.json
+    command: >
+      sh -c "sleep 3 && curl -X POST -H 'Content-Type: application/json' -d @/payload.json http://timeplus:8000/local/api/v1beta2/sources"
+    depends_on:
+      timeplus:
+        condition: service_healthy

@@ -1,0 +1,12 @@
+{
+    "name": "coinbase_tickers",
+    "description": "",
+    "type": "websocket",
+    "stream": "coinbase_tickers",
+    "properties": {
+        "data_type": "text",
+        "open_message": "{\"type\":\"subscribe\",\"channels\":[{\"name\":\"ticker\",\"product_ids\":[\"BTC-USD\",\"ETC-USD\",\"MONA-USD\",\"DAI-USD\"]}]}",
+        "open_message_type": "text",
+        "url": "wss://ws-feed.exchange.coinbase.com"
+    }
+}
