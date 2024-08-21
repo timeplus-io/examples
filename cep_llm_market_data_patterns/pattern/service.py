@@ -2,8 +2,11 @@ from typing import List
 from fastapi import FastAPI
 from pydantic import BaseModel
 
+from .model.chat import Detector
+
 
 app = FastAPI()
+detector = Detector()
 
 class EventsItem(BaseModel):
     events: List[List[List[float]]]
@@ -18,7 +21,8 @@ def info():
 def detect(item: EventsItem):
     results = []
     for e in item.events:
-        print(f"got an event {e}")
-        results.append(["pa_1","pa_2"])
+        patterns = detector.detect(e)
+        print(f"find patters {patterns}")
+        results.append(patterns)
 
     return {"result": results}

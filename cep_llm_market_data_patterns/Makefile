@@ -11,7 +11,7 @@ service:
 	uvicorn pattern.service:app --port 5001 --host 0.0.0.0 --http h11 --reload
 
 test:
-	curl -X POST http://localhost:5001/detect -H 'Content-Type: application/json' -d '{"events":[[[1.0, 2.0, 3.0, 4.0],[1.0, 2.0, 3.0, 4.0],[1.0, 2.0, 3.0, 4.0]],[[1.0, 2.0, 3.0, 4.0],[1.0, 2.0, 3.0, 4.0],[1.0, 2.0, 3.0, 4.0]]]}'
+	curl -X POST http://localhost:5001/detect -H 'Content-Type: application/json' -d '{"events":[[[106, 500, 20, 99],[100, 108, 102, 105],[106, 500, 20, 99]]]}'
 
 docker: Dockerfile
 	docker build --build-arg VERSION="$(VERSION)" -t $(IMAGE_NAME) .
