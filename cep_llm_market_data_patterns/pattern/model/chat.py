@@ -44,13 +44,13 @@ Assuming three consecutive candle event e2, e1 and e0, a Morning Star can be def
 __events__
 
 ## Output format
-The output should be string array in single line, do not add any \n in the result
-A sample output is : Bullish Engulfing,Morning Star
+Output the results as a JSON object with a key 'patterns' and a list of detected patterns as the value.
+A sample output is : {"patterns":["Bullish Engulfing","Morning Star"]}
 If the sequence contains a Bullish Engulfing pattern, the response should include "Bullish Engulfing".
 If the sequence contains a Bearish Engulfing pattern, the response should include "Bearish Engulfing".
 If the sequence contains a Doji pattern, the response should include "Doji".
 If the sequence contains a Morning Star pattern, the response should include "Morning Star".
-If the sequence does not contain any listed pattern, respond  "None".
+If the sequence does not contain any listed pattern, the response pattern should be empty array.
 '''
 
 
@@ -58,7 +58,7 @@ If the sequence does not contain any listed pattern, respond  "None".
 def chat(input, temp):
     logger.info(f'input is {input} , temperature is {temp}')
     response = openai.ChatCompletion.create(
-        model="gpt-4o-mini",
+        model="gpt-4o",
         messages=[{"role": "user", "content": input}],
         temperature=temp
     )
@@ -83,6 +83,6 @@ class Detector:
         intput = prompt.replace("__events__", events_str)
         result = chat(intput, temp=0)
 
-        last_line = result.strip().splitlines()[-1]
-        patterns = last_line.split(",")
-        return patterns
+        patterns = result.split("json")[-1].strip("```")
+        patterns_obj = json.loads(patterns)
+        return patterns_obj["patterns"]

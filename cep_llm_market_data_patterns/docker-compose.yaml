@@ -14,7 +14,7 @@ services:
       start_period: 10s
 
   cepllm:
-    image: cepllm:9bfe3dc
+    image: cepllm:e6ba42c
     ports:
       - "5001:5001"
     environment:
