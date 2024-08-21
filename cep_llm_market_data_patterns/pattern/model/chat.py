@@ -50,7 +50,7 @@ If the sequence contains a Bullish Engulfing pattern, the response should includ
 If the sequence contains a Bearish Engulfing pattern, the response should include "Bearish Engulfing".
 If the sequence contains a Doji pattern, the response should include "Doji".
 If the sequence contains a Morning Star pattern, the response should include "Morning Star".
-If the sequence does not contain any listed pattern, the response pattern should be empty array.
+If the sequence does not contain any above pattern, the response pattern should include "None".
 '''
 
 

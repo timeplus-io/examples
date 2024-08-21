@@ -14,7 +14,7 @@ services:
       start_period: 10s
 
   cepllm:
-    image: cepllm:e6ba42c
+    image: timeplus/cepllm:latest
     ports:
       - "5001:5001"
     environment:
