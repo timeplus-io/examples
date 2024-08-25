@@ -50,7 +50,7 @@ If the sequence contains a Bullish Engulfing pattern, the response should includ
 If the sequence contains a Bearish Engulfing pattern, the response should include "Bearish Engulfing".
 If the sequence contains a Doji pattern, the response should include "Doji".
 If the sequence contains a Morning Star pattern, the response should include "Morning Star".
-If the sequence does not contain any above pattern, the response pattern should include "None".
+If the sequence does not contain any above pattern, the response pattern should include "NA".
 '''
 
 
@@ -83,6 +83,9 @@ class Detector:
         intput = prompt.replace("__events__", events_str)
         result = chat(intput, temp=0)
 
-        patterns = result.split("json")[-1].strip("```")
-        patterns_obj = json.loads(patterns)
-        return patterns_obj["patterns"]
+        try:
+            patterns = result.split("json")[-1].strip("```")
+            patterns_obj = json.loads(patterns)
+            return patterns_obj["patterns"]
+        except Exception as e:
+            return ["NA"]
