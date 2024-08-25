@@ -1,8 +1,10 @@
+-- raw coinbase websocket market data
 CREATE STREAM IF NOT EXISTS coinbase_tickers
 (
   `raw` string
 );
 
+-- extracted market data
 CREATE VIEW IF NOT EXISTS v_coinbase_tickers_extracted
 (
   `best_ask` float32,
@@ -68,6 +70,7 @@ FROM
 WHERE
   _tp_time > earliest_timestamp();
 
+-- BTC OHLC for 1 minute bucket
 CREATE VIEW IF NOT EXISTS v_coinbase_btc_ohlc_1m
 (
   `time` datetime64(3),
@@ -89,6 +92,7 @@ WHERE
 GROUP BY
   window_start;
 
+-- check if there is engulfing
 CREATE VIEW IF NOT EXISTS v_btc_1m_engulfing
 (
   `time` datetime64(3),
@@ -119,7 +123,7 @@ SELECT
 FROM
   TWO_CANDELS;
 
-
+-- prepare last three candles for pattern detection
 CREATE VIEW IF NOT EXISTS v_btc_1m_ohlc_last_three
 (
   `time` datetime64(3),
@@ -139,6 +143,37 @@ SELECT
 FROM
   ohlc;
 
+-- remote UDF that will call LLM to detect the candle patterns
 CREATE OR REPLACE REMOTE FUNCTION pattern_detect(events array(tuple(float32, float32, float32, float32))) RETURNS array(string) 
 URL 'http://cepllm:5001/detect'
 AUTH_METHOD 'none';
+
+-- pattern definitation
+CREATE MUTABLE STREAM rules
+(
+  `id` string,
+  `conditionId` string,
+  `condition` string,
+  `number_of_candles` int
+)
+PRIMARY KEY (id, conditionId);
+
+-- initial rules
+INSERT INTO rules (id, conditionId, condition, number_of_candles) VALUES ('Bullish Engulfing', '1', 'e1.close < e1.open', 2);
+INSERT INTO rules (id, conditionId, condition, number_of_candles) VALUES ('Bullish Engulfing', '2', 'e0.close > e0.open', 2);
+INSERT INTO rules (id, conditionId, condition, number_of_candles) VALUES ('Bullish Engulfing', '3', 'e0.close > e1.open', 2);
+INSERT INTO rules (id, conditionId, condition, number_of_candles) VALUES ('Bullish Engulfing', '4', 'e0.open < e1.close', 2);
+
+INSERT INTO rules (id, conditionId, condition, number_of_candles) VALUES ('Bearish Engulfing', '1', 'e1.close > e1.open', 2);
+INSERT INTO rules (id, conditionId, condition, number_of_candles) VALUES ('Bearish Engulfing', '2', 'e0.close < e0.open', 2);
+INSERT INTO rules (id, conditionId, condition, number_of_candles) VALUES ('Bearish Engulfing', '3', 'e0.close < e1.open', 2);
+INSERT INTO rules (id, conditionId, condition, number_of_candles) VALUES ('Bearish Engulfing', '4', 'e0.open > e1.close', 2);
+
+INSERT INTO rules (id, conditionId, condition, number_of_candles) VALUES ('Doji', '1', 'abs(e0.close - e0.open) <= 0.2 * (e0.high - e0.low)', 1);
+
+INSERT INTO rules (id, conditionId, condition, number_of_candles) VALUES ('Morning Star', '1', 'e2.close < e2.open', 3);
+INSERT INTO rules (id, conditionId, condition, number_of_candles) VALUES ('Morning Star', '2', 'abs(e1.close - e1.open) <= 0.2 * (e2.high - e2.low)', 3);
+INSERT INTO rules (id, conditionId, condition, number_of_candles) VALUES ('Morning Star', '3', 'e0.close > e0.open', 3);
+INSERT INTO rules (id, conditionId, condition, number_of_candles) VALUES ('Morning Star', '4', 'e0.close > e2.open', 3);
+INSERT INTO rules (id, conditionId, condition, number_of_candles) VALUES ('Morning Star', '5', 'e0.close  > e2.close', 3);
+
