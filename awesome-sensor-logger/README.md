@@ -38,3 +38,67 @@ In your laptop/server, access `http://localhost:3000` and open the `Phone Sensor
 ![screnshot](dashboard.png)
 
 As a bonus,you can build a live dashboard in Timeplus without using Grafana.
+
+Go to the `Dashboards` page. Click `New Dashboard`. Set a name, then on the top right corner, choose the dot button and choose `View/Edit JSON` and paste this JSON in:
+
+```json
+[
+  {
+    "id": "9ba79499-253e-4d40-99e8-9f6e9170b082",
+    "title": "x-y-z",
+    "description": "",
+    "position": {
+      "h": 5,
+      "nextX": 12,
+      "nextY": 5,
+      "w": 12,
+      "x": 0,
+      "y": 0
+    },
+    "viz_type": "chart",
+    "viz_content": "SELECT\n  to_datetime64(cast(p:time, 'int64') / 1000000000, 3) AS time, array_join([tuple_cast('x',to_float32_or_zero(p:values.x)),\n  tuple_cast('y',to_float32_or_zero(p:values.y)),tuple_cast('z',to_float32_or_zero(p:values.z))]) as t, t.1 as axis, t.2 as value\nFROM\n  (\n    SELECT\n      array_join(json_extract_array(raw, 'payload')) AS p\n    FROM\n      phone\n    WHERE\n      p:name = 'gyroscope'\n  )",
+    "viz_config": {
+      "chartType": "line",
+      "config": {
+        "color": "axis",
+        "colors": [
+          "#ED64A6",
+          "#F0BE3E",
+          "#DA4B36",
+          "#9A1563",
+          "#FF4A71",
+          "#D12D50",
+          "#8934D9",
+          "#D53F8C",
+          "#F7775A",
+          "#8934D9"
+        ],
+        "dataLabel": false,
+        "fractionDigits": 2,
+        "gridlines": true,
+        "legend": true,
+        "lineStyle": "curve",
+        "points": false,
+        "showAll": false,
+        "unit": {
+          "position": "left",
+          "value": ""
+        },
+        "xAxis": "time",
+        "xFormat": "",
+        "xRange": "Infinity",
+        "xTitle": "",
+        "yAxis": "value",
+        "yRange": {
+          "max": null,
+          "min": null
+        },
+        "yTickLabel": {
+          "maxChar": 25
+        },
+        "yTitle": ""
+      }
+    }
+  }
+]
+```
