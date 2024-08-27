@@ -1,0 +1,22 @@
+services:
+  timeplus:
+    image: docker.timeplus.com/timeplus/timeplus-enterprise:latest
+    pull_policy: always
+    ports:
+      - 3218:3218 #http port for JDBC driver, default streaming mode
+      - 8123:8123 #http port for JDBC driver, default batch mode
+      - 8463:8463 #tcp port for go driver or grafana plugin
+      - 8000:8000 #UI and REST port
+
+  grafana:
+    image: grafana/grafana:latest
+    pull_policy: always
+    ports:
+      - 3000:3000
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: 1
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+      GF_INSTALL_PLUGINS: timeplus-proton-datasource
+      GF_LOG_LEVEL: error
+    volumes:
+      - ./grafana_provisioning:/etc/grafana/provisioning
