@@ -146,7 +146,8 @@ FROM
 -- remote UDF that will call LLM to detect the candle patterns
 CREATE OR REPLACE REMOTE FUNCTION pattern_detect(events array(tuple(float32, float32, float32, float32))) RETURNS array(string) 
 URL 'http://cepllm:5001/detect'
-AUTH_METHOD 'none';
+AUTH_METHOD 'none'
+EXECUTION_TIMEOUT 60000;
 
 -- pattern definitation
 CREATE MUTABLE STREAM rules

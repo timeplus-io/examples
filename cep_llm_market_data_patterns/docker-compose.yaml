@@ -1,9 +1,8 @@
 services:
   timeplus:
-    image: timeplus/timeplus-enterprise:2.4.19
+    image: timeplus/timeplus-enterprise:2.5.1
     environment:
     - ENABLE_AUTHENTICATION=false
-    - TIMEPLUSD_ADMIN_PASSWORD=Password!
     ports:
       - "8000:8000"
     healthcheck:
@@ -27,7 +26,7 @@ services:
       start_period: 10s
 
   init_sql:
-    image: timeplus/timeplus-enterprise:2.4.19
+    image: timeplus/timeplus-enterprise:2.5.1
     entrypoint: >
       /bin/bash -c "timeplusd client -h timeplus --queries-file=/init.sql"
     volumes:
