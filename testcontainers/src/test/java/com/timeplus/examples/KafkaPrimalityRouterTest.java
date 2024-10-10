@@ -79,7 +79,7 @@ public class KafkaPrimalityRouterTest {
                         "" + i,
                         "" + i
                     );
-                    producer.send(record, (event, ex) -> fail(ex));
+                    producer.send(record);
                 }
             }
 
@@ -95,7 +95,7 @@ public class KafkaPrimalityRouterTest {
                     "hello",
                     "world"
                 );
-                producer.send(record, (event, ex) -> fail(ex));
+                producer.send(record);
             }
 
             // Step 4: start Timeplus container and run init.sql to create ETL pipelines
