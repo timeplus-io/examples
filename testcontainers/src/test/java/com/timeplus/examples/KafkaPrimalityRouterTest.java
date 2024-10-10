@@ -85,7 +85,7 @@ public class KafkaPrimalityRouterTest {
                 }
             }
 
-            // Step 2.2: produce strings to test DLQ routing
+            // Step 3.2: produce strings to test DLQ routing
             try (
                 final Producer<String, String> producer = buildProducer(
                     kafka.getBootstrapServers(),
@@ -100,7 +100,7 @@ public class KafkaPrimalityRouterTest {
                 producer.send(record, (event, ex) -> fail(ex));
             }
 
-            // Step 3: start Timeplus container and run init.sql to create ETL pipelines
+            // Step 4: start Timeplus container and run init.sql to create ETL pipelines
             TimeplusContainer timeplus = new TimeplusContainer(
                 "timeplus/timeplusd:2.3.31"
             )
@@ -108,7 +108,7 @@ public class KafkaPrimalityRouterTest {
                 .withInitScript("init.sql"); // inside src/test/resources
             timeplus.start();
 
-            // Step 4: validate prime / composite routing
+            // Step 5: validate prime / composite routing
             try (
                 final Consumer<String, String> consumer = buildConsumer(
                     kafka.getBootstrapServers(),
