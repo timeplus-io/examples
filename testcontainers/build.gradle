@@ -1,5 +1,6 @@
 plugins {
     id "java"
+    id "com.diffplug.spotless" version "7.0.0.BETA2"
 }
 
 repositories {
@@ -31,5 +32,12 @@ test {
         outputs.upToDateWhen { false }
         showStandardStreams = true
         exceptionFormat = "full"
+    }
+}
+
+spotless {
+  java {
+    importOrder()
+    removeUnusedImports()
     }
 }
