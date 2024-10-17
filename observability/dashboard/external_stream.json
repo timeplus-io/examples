@@ -18,7 +18,6 @@
     "editable": true,
     "fiscalYearStartMonth": 0,
     "graphTooltip": 0,
-    "id": 2,
     "links": [],
     "liveNow": false,
     "panels": [
@@ -38,7 +37,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "edo3urd0nde68a"
+          "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
         },
         "description": "",
         "fieldConfig": {
@@ -77,25 +76,21 @@
           "justifyMode": "auto",
           "orientation": "auto",
           "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
+            "calcs": ["lastNotNull"],
             "fields": "",
             "values": false
           },
-          "showPercentChange": false,
-          "textMode": "auto",
-          "wideLayout": true
+          "textMode": "auto"
         },
-        "pluginVersion": "11.0.0",
+        "pluginVersion": "10.1.5",
         "targets": [
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
             },
             "editorMode": "code",
-            "expr": "sum(rate(ProtonExternalStream_ReadRows{name=~\"$stream\"}[1m]))",
+            "expr": "sum(rate(TimeplusdExternalStream_ReadRows{name=~\"$stream\"}[1m]))",
             "range": true,
             "refId": "A"
           }
@@ -106,7 +101,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "edo3urd0nde68a"
+          "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
         },
         "fieldConfig": {
           "defaults": {
@@ -144,25 +139,21 @@
           "justifyMode": "auto",
           "orientation": "auto",
           "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
+            "calcs": ["lastNotNull"],
             "fields": "",
             "values": false
           },
-          "showPercentChange": false,
-          "textMode": "auto",
-          "wideLayout": true
+          "textMode": "auto"
         },
-        "pluginVersion": "11.0.0",
+        "pluginVersion": "10.1.5",
         "targets": [
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
             },
             "editorMode": "code",
-            "expr": "sum(rate(ProtonExternalStream_ReadBytes{name=~\"$stream\"}[1m]))",
+            "expr": "sum(rate(TimeplusdExternalStream_ReadBytes{name=~\"$stream\"}[1m]))",
             "range": true,
             "refId": "A"
           }
@@ -173,7 +164,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "edo3urd0nde68a"
+          "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
         },
         "description": "",
         "fieldConfig": {
@@ -212,25 +203,21 @@
           "justifyMode": "auto",
           "orientation": "auto",
           "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
+            "calcs": ["lastNotNull"],
             "fields": "",
             "values": false
           },
-          "showPercentChange": false,
-          "textMode": "auto",
-          "wideLayout": true
+          "textMode": "auto"
         },
-        "pluginVersion": "11.0.0",
+        "pluginVersion": "10.1.5",
         "targets": [
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
             },
             "editorMode": "code",
-            "expr": "sum(rate(ProtonExternalStream_WrittenRows{name=~\"$stream\"}[1m]))",
+            "expr": "sum(rate(TimeplusdExternalStream_WrittenBytes{name=~\"$stream\"}[1m]))",
             "range": true,
             "refId": "A"
           }
@@ -241,7 +228,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "edo3urd0nde68a"
+          "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
         },
         "fieldConfig": {
           "defaults": {
@@ -279,25 +266,21 @@
           "justifyMode": "auto",
           "orientation": "auto",
           "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
+            "calcs": ["lastNotNull"],
             "fields": "",
             "values": false
           },
-          "showPercentChange": false,
-          "textMode": "auto",
-          "wideLayout": true
+          "textMode": "auto"
         },
-        "pluginVersion": "11.0.0",
+        "pluginVersion": "10.1.5",
         "targets": [
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
             },
             "editorMode": "code",
-            "expr": "sum(rate(ProtonExternalStream_WrittenBytes{name=~\"$stream\"}[1m]))",
+            "expr": "sum(rate(TimeplusdExternalStream_WrittenBytes{name=~\"$stream\"}[1m]))",
             "range": true,
             "refId": "A"
           }
@@ -321,7 +304,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "edo3urd0nde68a"
+          "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
         },
         "description": "",
         "fieldConfig": {
@@ -330,7 +313,6 @@
               "mode": "palette-classic"
             },
             "custom": {
-              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
@@ -394,7 +376,6 @@
             "showLegend": true
           },
           "tooltip": {
-            "maxHeight": 600,
             "mode": "single",
             "sort": "none"
           }
@@ -403,10 +384,10 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
             },
             "editorMode": "code",
-            "expr": "sum by (name) (rate(ProtonExternalStream_ReadBytes{name=~\"$stream\"}[1m]))",
+            "expr": "sum by (name) (rate(TimeplusdExternalStream_ReadBytes{name=~\"$stream\"}[1m]))",
             "hide": false,
             "instant": false,
             "legendFormat": "{{name}}",
@@ -420,7 +401,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "edo3urd0nde68a"
+          "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
         },
         "description": "",
         "fieldConfig": {
@@ -429,7 +410,6 @@
               "mode": "palette-classic"
             },
             "custom": {
-              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
@@ -493,7 +473,6 @@
             "showLegend": true
           },
           "tooltip": {
-            "maxHeight": 600,
             "mode": "single",
             "sort": "none"
           }
@@ -502,10 +481,10 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
             },
             "editorMode": "code",
-            "expr": "sum by (name) (rate(ProtonExternalStream_WrittenBytes{name=~\"$stream\"}[1m]))",
+            "expr": "sum by (name) (rate(TimeplusdExternalStream_WrittenBytes{name=~\"$stream\"}[1m]))",
             "hide": false,
             "instant": false,
             "legendFormat": "{{name}}",
@@ -519,7 +498,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "edo3urd0nde68a"
+          "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
         },
         "description": "",
         "fieldConfig": {
@@ -528,7 +507,6 @@
               "mode": "palette-classic"
             },
             "custom": {
-              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
@@ -591,7 +569,6 @@
             "showLegend": true
           },
           "tooltip": {
-            "maxHeight": 600,
             "mode": "single",
             "sort": "none"
           }
@@ -600,10 +577,10 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
             },
             "editorMode": "code",
-            "expr": "sum by (name) (rate(ProtonExternalStream_ReadFailed{name=~\"$stream\"}[1m]))",
+            "expr": "sum by (name) (rate(TimeplusdExternalStream_ReadFailed{name=~\"$stream\"}[1m]))",
             "hide": false,
             "instant": false,
             "legendFormat": "{{name}}",
@@ -617,7 +594,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "edo3urd0nde68a"
+          "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
         },
         "description": "",
         "fieldConfig": {
@@ -626,7 +603,6 @@
               "mode": "palette-classic"
             },
             "custom": {
-              "axisBorderShow": false,
               "axisCenteredZero": false,
               "axisColorMode": "text",
               "axisLabel": "",
@@ -689,7 +665,6 @@
             "showLegend": true
           },
           "tooltip": {
-            "maxHeight": 600,
             "mode": "single",
             "sort": "none"
           }
@@ -698,10 +673,10 @@
           {
             "datasource": {
               "type": "prometheus",
-              "uid": "edo3urd0nde68a"
+              "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
             },
             "editorMode": "code",
-            "expr": "sum by (name) (rate(ProtonExternalStream_WrittenFailed{name=~\"$stream\"}[1m]))",
+            "expr": "sum by (name) (rate(TimeplusdExternalStream_WrittenFailed{name=~\"$stream\"}[1m]))",
             "hide": false,
             "instant": false,
             "legendFormat": "{{name}}",
@@ -711,36 +686,243 @@
         ],
         "title": "Write - failed",
         "type": "timeseries"
+      },
+      {
+        "collapsed": true,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 26
+        },
+        "id": 11,
+        "panels": [],
+        "title": "By pod",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "binBps"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 27
+        },
+        "id": 8,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
+            },
+            "editorMode": "code",
+            "expr": "sum by (pod_name) (rate(TimeplusdExternalStream_ReadBytes{name=~\"$stream\"}[1m]))",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "B"
+          }
+        ],
+        "title": "Read - throughput by pod",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "prometheus",
+          "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
+        },
+        "description": "",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            },
+            "custom": {
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "binBps"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 27
+        },
+        "id": 16,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "prometheus",
+              "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
+            },
+            "editorMode": "code",
+            "expr": "sum by (pod_name) (rate(TimeplusdExternalStream_WrittenBytes{name=~\"$stream\"}[1m]))",
+            "hide": false,
+            "instant": false,
+            "legendFormat": "__auto",
+            "range": true,
+            "refId": "B"
+          }
+        ],
+        "title": "Write - throughput by pod",
+        "type": "timeseries"
       }
     ],
     "refresh": "",
-    "schemaVersion": 39,
+    "schemaVersion": 38,
+    "style": "dark",
     "tags": [],
     "templating": {
       "list": [
         {
           "current": {
-            "selected": false,
-            "text": "attackers_external_stream",
-            "value": "attackers_external_stream"
+            "selected": true,
+            "text": "ext_calvin_test",
+            "value": "ext_calvin_test"
           },
           "datasource": {
             "type": "prometheus",
-            "uid": "edo3urd0nde68a"
+            "uid": "c24e0faf-1490-4321-a373-7b2b07ca2e38"
           },
-          "definition": "label_values(ProtonExternalStream_ReadBytes,name)",
+          "definition": "label_values(TimeplusdExternalStream_ReadBytes,name)",
           "hide": 0,
-          "includeAll": false,
+          "includeAll": true,
           "label": "Stream",
           "multi": false,
           "name": "stream",
           "options": [],
           "query": {
-            "qryType": 1,
-            "query": "label_values(ProtonExternalStream_ReadBytes,name)",
+            "query": "label_values(TimeplusdExternalStream_ReadBytes,name)",
             "refId": "PrometheusVariableQueryEditor-VariableQuery"
           },
-          "refresh": 1,
+          "refresh": 2,
           "regex": "",
           "skipUrlSync": false,
           "sort": 0,
@@ -752,11 +934,10 @@
       "from": "now-15m",
       "to": "now"
     },
-    "timeRangeUpdatedDuringEditOrView": false,
     "timepicker": {},
     "timezone": "",
     "title": "Timeplus external streams",
     "uid": "timeplus-external-streams",
-    "version": 2,
+    "version": 1,
     "weekStart": ""
   }

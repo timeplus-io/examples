@@ -1,7 +1,3 @@
-
-start_init:
-	docker compose --profile init up -d
-
 start:
 	docker compose up -d
 
