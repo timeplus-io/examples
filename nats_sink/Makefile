@@ -13,7 +13,7 @@ init:
 	docker compose exec timeplus /bin/bash -c 'timeplusd client --multiquery < /script/init.sql'
 
 create:
-	yq -o=json $(PWD)/$(PIPELINE) | curl http://localhost:4195/streams/$(PIPELINE_NAME) -X POST  -d  @-
+	yq -o=json $(PWD)/$(PIPELINE) | curl http://localhost:4196/streams/$(PIPELINE_NAME) -X POST  -d  @-
 
 delete:
 	curl http://localhost:4195/streams/$(PIPELINE_NAME) -X DELETE 

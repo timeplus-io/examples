@@ -1,14 +1,17 @@
 services:
   timeplus:
-    image: timeplus/timeplus-enterprise:2.4.16
+    image: timeplus/timeplus-enterprise:2.4.23
     container_name: timeplus-server
     environment:
     - ENABLE_AUTHENTICATION=false
     - ENABLE_DATA_PREALLOCATE=false
     ports:
-      - "8000:8000"
-      - "4195:4195"
+      #- "8000:8000"
+      - "3218:3218"
       - "8463:8463"
+      - "4000:4000"
+      - "4196:4196"
+      - "9444:9444"
     volumes:
       - timeplus_data:/timeplus/data/
       - ./script:/script/
