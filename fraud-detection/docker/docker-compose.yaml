@@ -1,0 +1,22 @@
+name: timeplus-fraud-detection
+services:
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.5.4
+    pull_policy: always
+    ports:
+      - "8000:8000" # app server http
+      - "8463:8463" # timeplusd tcp
+      - "3218:3218" # timeplusd http
+    healthcheck:
+      test: [ "CMD", "curl", "http://localhost:3218/proton/ping" ]
+      interval: 2s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - ./tp-sync:/timeplus/tp-sync/
+
+  fraud-detector:
+    image: fraud:8c53482
+
+  

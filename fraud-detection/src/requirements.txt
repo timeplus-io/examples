@@ -1,0 +1,7 @@
+timeplus==2.0.0b4
+click==8.1.7
+proton_driver==0.2.11
+requests==2.31.0
+fastapi==0.75.0
+uvicorn[standard]==0.17.6
+numpy
