@@ -16,7 +16,14 @@ services:
     volumes:
       - ./tp-sync:/timeplus/tp-sync/
 
-  fraud-detector:
-    image: fraud:8c53482
+  fraud-detector: # udf
+    image: fraud:00f3bc2   
+
+  transaction: # transaction simulator
+    image: fraud:00f3bc2
+    entrypoint: ["python", "transaction.py"]
+    environment:
+    - TIMEPLUS_HOST=timeplus
+
 
   
