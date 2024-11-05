@@ -450,11 +450,15 @@ def init_proton():
         `new_balance_to` float64
     )'''
 
-    ddl_label = '''CREATE STREAM IF NOT EXISTS online_payments_label(
-        `id` string,
-        `is_fraud` bool,
-        `type` string
-    )'''
+    ddl_label = '''CREATE MUTABLE STREAM IF NOT EXISTS online_payments_label
+(
+  `id` string,
+  `is_fraud` bool,
+  `type` string,
+  `_tp_time` datetime64(3, 'UTC') DEFAULT now64(3, 'UTC') CODEC(DoubleDelta, ZSTD(1))
+)
+ENGINE = MutableStream(1,1)
+PRIMARY KEY id;'''
 
     with connect(f"proton://{timeplus_user}:{timeplus_password}@{timeplus_host}:8463/default") as conn:
         with conn.cursor() as cursor:
