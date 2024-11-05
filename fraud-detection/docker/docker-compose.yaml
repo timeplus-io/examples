@@ -14,6 +14,7 @@ services:
       retries: 3
       start_period: 10s
     volumes:
+      - timeplus_data:/timeplus/data/
       - ./tp-sync:/timeplus/tp-sync/
 
   fraud-detector: # udf
@@ -25,5 +26,6 @@ services:
     environment:
     - TIMEPLUS_HOST=timeplus
 
-
-  
+volumes:
+  timeplus_data:
+    driver: local

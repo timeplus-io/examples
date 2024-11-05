@@ -15,8 +15,8 @@ WITH t AS
       _tp_time AS ts, id, fraud_detect(to_string(type), amount, previous_amount, time_to_last_transaction, transaction_count_1m, max_transaction_amount_1m, avg_transaction_amount_1m, distinct_transaction_target_count_5m, avg_transaction_count_1d, avg_max_transaction_count_1d) AS predict
     FROM
       mv_fraud_all_features
-    SETTINGS
-      enable_optimize_predicate_expression = 0, seek_to = '-1h'
+    WHERE
+      _tp_time > (now() -1h)
   )
 SELECT
   t.ts AS ts, t.id AS id, t.truth AS truth, p.predict = 1 AS predict
@@ -58,20 +58,29 @@ SELECT
   _tp_time, id, fraud_detect(to_string(type), amount, previous_amount, time_to_last_transaction, transaction_count_1m, max_transaction_amount_1m, avg_transaction_amount_1m, distinct_transaction_target_count_5m, avg_transaction_count_1d, avg_max_transaction_count_1d) AS predict
 FROM 
   mv_fraud_all_features
-WHERE predict = 1
-settings enable_optimize_predicate_expression = 0;
+WHERE predict = 1;
 
 
 -- trend of detected fraud vs ground truth 
 CREATE VIEW IF NOT EXISTS v_detected_fraud_vs_ground_truth AS 
-WITH gt AS
+WITH label AS
+  (
+    SELECT
+      *
+    FROM
+      online_payments_label
+    WHERE
+      _tp_time > (now() - 1h)
+    SETTINGS
+      enforce_append_only = 1
+  ), gt AS
   (
     SELECT
       window_start, count(*), 'ground_truth' AS label
     FROM
-      tumble(table(online_payments_label), 1m)
+      tumble(label, 1m)
     WHERE
-      (is_fraud = 1) AND (_tp_time > (now() - 1h))
+      is_fraud = 1
     GROUP BY
       window_start
   ), predict AS
@@ -79,7 +88,7 @@ WITH gt AS
     SELECT
       window_start, count(*), 'prediction' AS label
     FROM
-      tumble(table(v_detected_fraud), 1m)
+      tumble(v_detected_fraud, 1m)
     WHERE
       _tp_time > (now() - 1h)
     GROUP BY
