@@ -5,11 +5,9 @@ WITH t AS
         p._tp_time AS ts, p.id AS id, l.is_fraud AS truth
     FROM
         online_payments AS p
-    LEFT JOIN online_payments_label AS l ON p.id = l.id
+    LEFT JOIN online_payments_label AS l ON (p.id = l.id) AND date_diff_within(1s)
     WHERE
         p._tp_time > (now() - 1h)
-    SETTINGS
-      enforce_append_only = 1
   ), p AS
   (
     SELECT
