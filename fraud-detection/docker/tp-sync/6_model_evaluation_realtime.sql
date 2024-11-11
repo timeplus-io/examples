@@ -46,6 +46,7 @@ WITH label AS
       online_payments_label
     WHERE
       _tp_time > (now() - 1h)
+    settings enforce_append_only=1
   ), gt AS
   (
     SELECT

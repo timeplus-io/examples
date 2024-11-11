@@ -5,9 +5,11 @@ WITH t AS
         p._tp_time AS ts, p.id AS id, l.is_fraud AS truth
     FROM
         online_payments AS p
-    LEFT JOIN online_payments_label AS l ON (p.id = l.id) AND date_diff_within(1s)
+    LEFT JOIN online_payments_label AS l ON (p.id = l.id) AND lag_behind(300ms, p._tp_time, l._tp_time)  -- wait right stream 
     WHERE
         p._tp_time > (now() - 1h)
+    settings
+      join_quiesce_threshold_ms=5000
   ), p AS
   (
     SELECT
