@@ -18,19 +18,25 @@ services:
       - ./tp-sync:/timeplus/tp-sync/
 
   fraud-detector: # udf
-    image: timeplus/fraud:latest
-    depends_on:
-      timeplus:
-        condition: service_healthy
+    image: fraud:830bdae  
 
   transaction: # transaction simulator
-    image: timeplus/fraud:latest
+    image: fraud:830bdae
     entrypoint: ["python", "transaction.py"]
     environment:
     - TIMEPLUS_HOST=timeplus
-    depends_on:
-      timeplus:
-        condition: service_healthy
+
+  notebook:
+    image: timeplus-ibis:dev
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+    entrypoint: /bin/bash
+    command: -c "jupyter notebook \
+                 --notebook-dir=/home/jovyan/work --ip='*' --port=8888 \
+                 --NotebookApp.token='' \
+                 --no-browser --allow-root"
 
 volumes:
   timeplus_data:

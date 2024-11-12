@@ -10,11 +10,12 @@ CREATE STREAM IF NOT EXISTS online_payments
   `old_balance_to` float64,
   `new_balance_to` float64
 );
-
-CREATE STREAM IF NOT EXISTS online_payments_label
+CREATE MUTABLE STREAM IF NOT EXISTS online_payments_label
 (
   `id` string,
   `is_fraud` bool,
   `type` string,
   `_tp_time` datetime64(3, 'UTC') DEFAULT now64(3, 'UTC') CODEC(DoubleDelta, ZSTD(1))
 )
+ENGINE = MutableStream(1,1)
+PRIMARY KEY id;

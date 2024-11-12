@@ -23,7 +23,20 @@ SELECT
 FROM
   tumble(v_realtime_model_performance, 5m)
 WHERE
-  _tp_time > earliest_ts()
+  window_start > earliest_ts()
+GROUP BY
+  window_start;
+
+CREATE VIEW IF NOT EXISTS v_realtime_model_performance_1m AS 
+SELECT
+  window_start, 
+  sum(TP + TN) / count() AS accuracy, 
+  sum(TP) / sum(TP + FP) AS precision, 
+  sum(TP) / sum(TP + FN) AS recall
+FROM
+  tumble(v_realtime_model_performance, 1m)
+WHERE
+  window_start > earliest_ts()
 GROUP BY
   window_start;
 
