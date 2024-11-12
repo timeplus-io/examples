@@ -10,4 +10,4 @@
 
 1. MV `mv_fraud_all_features` contains the features used for train the fraud detection model and for real-time inference
 2. MV `mv_detected_fraud` contains all the detected fraud and the groud truth
-3. View `v_realtime_model_performance_1m` contains real-time model evalution for every 1 minute tumble window.
+3. View `v_realtime_model_performance_1m` contains real-time model evalution for every 1 minute tumble window
