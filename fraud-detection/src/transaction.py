@@ -838,10 +838,6 @@ class PaymentSimulator():
             time.sleep(self.interval)
 
 
-def wait_proton():
-    
-
-
 @click.command()
 @click.option('--target', default='proton', help='use proton or timeplus')
 def run(target):
