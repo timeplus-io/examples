@@ -733,8 +733,9 @@ class PaymentSimulator():
         transaction_data = [id, 'TRANSFER', amount,
                             account_from['id'], old_balance_from, new_balance_from,
                             account_to['id'], old_balance_to, new_balance_to]
-        self.run_write_with_data([transaction_data])
         self.run_ground_truth(id, 'type1')
+        self.run_write_with_data([transaction_data])
+        
 
         time.sleep(3)
 
@@ -750,8 +751,9 @@ class PaymentSimulator():
         transaction_data = [id, 'TRANSFER', amount,
                             account_from['id'], old_balance_from, new_balance_from,
                             account_to['id'], old_balance_to, new_balance_to]
-        self.run_write_with_data([transaction_data])
         self.run_ground_truth(id, 'type1')
+        self.run_write_with_data([transaction_data])
+        
 
     # transfer all money into different accounts
     def run_fraud_type2(self):
@@ -779,8 +781,8 @@ class PaymentSimulator():
             transaction_data = [id, 'TRANSFER', amount,
                                 account_from['id'], old_balance_from, new_balance_from,
                                     account_to['id'], old_balance_to, new_balance_to]
-            self.run_write_with_data([transaction_data])
             self.run_ground_truth(id, 'type2')
+            self.run_write_with_data([transaction_data])
             time.sleep(1)
 
     # pay all money to a merchant
@@ -804,8 +806,9 @@ class PaymentSimulator():
         transaction_data = [id, 'PAYMENT', amount,
                             account_from['id'], old_balance_from, new_balance_from,
                             account_to['id'], old_balance_to, new_balance_to]
-        self.run_write_with_data([transaction_data])
         self.run_ground_truth(id, 'type3')
+        self.run_write_with_data([transaction_data])
+        
         time.sleep(1)
 
     def run(self):

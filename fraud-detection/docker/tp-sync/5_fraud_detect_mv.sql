@@ -9,7 +9,7 @@ WITH t AS
     WHERE
         p._tp_time > (now() - 1h)
     settings
-      join_quiesce_threshold_ms=5000
+      join_quiesce_threshold_ms=10000 
   ), p AS
   (
     SELECT
