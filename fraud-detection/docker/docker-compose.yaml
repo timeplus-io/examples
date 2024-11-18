@@ -1,14 +1,14 @@
 name: timeplus-fraud-detection
 services:
   timeplus:
-    image: timeplus/timeplus-enterprise:2.5.4
+    image: timeplus/timeplus-enterprise:2.5.9
     pull_policy: always
     ports:
       - "8000:8000" # app server http
       - "8463:8463" # timeplusd tcp
       - "3218:3218" # timeplusd http
     healthcheck:
-      test: [ "CMD", "curl", "http://localhost:3218/proton/ping" ]
+      test: ["CMD", "curl", "http://localhost:3218/proton/ping"]
       interval: 2s
       timeout: 10s
       retries: 3
@@ -27,7 +27,7 @@ services:
     image: timeplus/fraud:latest
     entrypoint: ["python", "transaction.py"]
     environment:
-    - TIMEPLUS_HOST=timeplus
+      - TIMEPLUS_HOST=timeplus
     depends_on:
       timeplus:
         condition: service_healthy

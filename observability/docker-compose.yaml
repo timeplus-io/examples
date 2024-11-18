@@ -1,6 +1,6 @@
 services:
   timeplus:
-    image: timeplus/timeplus-enterprise:2.5.4
+    image: timeplus/timeplus-enterprise:2.5.9
     container_name: timeplus
     ports:
       - "8000:8000" # Neutron
@@ -38,8 +38,8 @@ services:
     image: prom/prometheus
     container_name: prometheus
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--web.enable-remote-write-receiver'
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--web.enable-remote-write-receiver"
     ports:
       - 9090:9090
     restart: unless-stopped

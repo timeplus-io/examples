@@ -1,9 +1,9 @@
 services:
   timeplus:
-    image: timeplus/timeplus-enterprise:2.5.2
+    image: timeplus/timeplus-enterprise:2.5.9
     environment:
-    - ENABLE_AUTHENTICATION=true
-    - TIMEPLUSD_CONN_MAX_IDLE_TIME=60
+      - ENABLE_AUTHENTICATION=true
+      - TIMEPLUSD_CONN_MAX_IDLE_TIME=60
     ports:
       - "8000:8000"
       - "8463:8463"
@@ -22,5 +22,4 @@ services:
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     ports:
-    - "5001:5001"
-  
+      - "5001:5001"

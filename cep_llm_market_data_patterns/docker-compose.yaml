@@ -1,8 +1,8 @@
 services:
   timeplus:
-    image: timeplus/timeplus-enterprise:2.5.1
+    image: timeplus/timeplus-enterprise:2.5.9
     environment:
-    - ENABLE_AUTHENTICATION=false
+      - ENABLE_AUTHENTICATION=false
     ports:
       - "8000:8000"
     healthcheck:
@@ -17,7 +17,7 @@ services:
     ports:
       - "5001:5001"
     environment:
-    - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     healthcheck:
       test: ["CMD", "curl", "http://localhost:5001/"]
       interval: 2s
@@ -26,7 +26,7 @@ services:
       start_period: 10s
 
   init_sql:
-    image: timeplus/timeplus-enterprise:2.5.1
+    image: timeplus/timeplus-enterprise:2.5.9
     entrypoint: >
       /bin/bash -c "timeplusd client -h timeplus --queries-file=/init.sql"
     volumes:
