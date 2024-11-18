@@ -17,8 +17,12 @@ datasources:
     withCredentials:
     jsonData:
       host: timeplus
+      tcpPort: 8463
+      httpPort: 3218
+      username: admin
     readOnly: false
     secureJsonData:
+      password: password
       tlsCACert: ""
       tlsClientCert: ""
       tlsClientKey: ""

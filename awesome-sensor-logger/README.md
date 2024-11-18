@@ -10,15 +10,11 @@ Demo video: https://youtu.be/vi4Yl6L4_Dw?t=1049
 Install [Docker Desktop](https://docs.docker.com/desktop/) and fork this repo or download the [docker-compose.yml](docker-compose.yml) to a local folder. Start everything via `docker compose up`. The following containers will be started:
 * latest version of Timeplus Enterprise, to receive the live data and apply stream processing
 * latest version of Grafana, to visualize the live data with streaming SQL
+* a curl tool to initialize the Timeplus: setup a new account (admin/password), create `phone` stream with a `raw` string column.
 
 Wait for about half a minute to have all containers up running.
 
-### Step 2: configure Timeplus Enteprise
-
-* Open http://localhost:8000 and create an account with `admin` as the user name and `password` as the password. * Login with that account.
-* On the [SQL Console](http://localhost:8000/default/console/query), run the following SQL: `CREATE STREAM phone(raw string)` This will create a data stream for any JSON document.
-
-### Step 3: install mobile app and push data to Proton
+### Step 2: install mobile app and push data to Proton
 Download Sensor Logger at www.tszheichoi.com/sensorlogger.
 
 | Android | iOS |

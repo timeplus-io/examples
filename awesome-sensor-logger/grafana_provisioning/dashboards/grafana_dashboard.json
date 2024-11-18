@@ -18,9 +18,8 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
-  "liveNow": false,
   "panels": [
     {
       "datasource": {
@@ -98,6 +97,7 @@
         "xTickLabelRotation": 0,
         "xTickLabelSpacing": 0
       },
+      "pluginVersion": "11.3.0+security-01",
       "targets": [
         {
           "addNow": false,
@@ -107,7 +107,8 @@
           },
           "isStreaming": true,
           "queryText": "select array_join(xyz) as v, multi_if(v[1]=1,'x',v[1]=2,'y','z') as axis, v[2] as value, time from(\nselect to_datetime64((p:time::int64)/1000000000,3) as time,[[1,to_float32_or_zero(p:values.x)],[2,to_float32_or_zero(p:values.y)],[3,to_float32_or_zero(p:values.z)]] as xyz from (select array_join(json_extract_array(raw,'payload')) as p from phone where p:name='gyroscope')\n)",
-          "refId": "A"
+          "refId": "A",
+          "sql": "select array_join(xyz) as v, multi_if(v[1]=1,'x',v[1]=2,'y','z') as axis, v[2] as value, time from(\n    select to_datetime64((p:time::int64)/1000000000,3) as time,[[1,to_float32_or_zero(p:values.x)],[2,to_float32_or_zero(p:values.y)],[3,to_float32_or_zero(p:values.z)]] as xyz from (select array_join(json_extract_array(raw,'payload')) as p from phone where p:name='gyroscope')\n)"
         }
       ],
       "title": "Bar Chart",
@@ -129,14 +130,17 @@
             "axisColorMode": "text",
             "axisLabel": "",
             "axisPlacement": "auto",
+            "fillOpacity": 50,
             "hideFrom": {
               "legend": false,
               "tooltip": false,
               "viz": false
             },
+            "pointShape": "circle",
             "pointSize": {
               "fixed": 5
             },
+            "pointStrokeWidth": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -167,24 +171,45 @@
       },
       "id": 2,
       "options": {
-        "dims": {
-          "exclude": [
-            "z"
-          ]
-        },
         "legend": {
           "calcs": [],
           "displayMode": "list",
           "placement": "bottom",
           "showLegend": true
         },
-        "series": [],
-        "seriesMapping": "auto",
+        "mapping": "auto",
+        "series": [
+          {
+            "frame": {
+              "matcher": {
+                "id": "byIndex",
+                "options": 0
+              }
+            },
+            "x": {
+              "matcher": {
+                "id": "byType",
+                "options": "number"
+              }
+            },
+            "y": {
+              "exclude": {
+                "id": "byNames",
+                "options": ["z"]
+              },
+              "matcher": {
+                "id": "byType",
+                "options": "number"
+              }
+            }
+          }
+        ],
         "tooltip": {
           "mode": "single",
           "sort": "none"
         }
       },
+      "pluginVersion": "11.3.0+security-01",
       "targets": [
         {
           "addNow": false,
@@ -194,15 +219,17 @@
           },
           "isStreaming": true,
           "queryText": "select to_datetime64((p:time::int64)/1000000000,3) as time,to_float32_or_zero(p:values.x) as x,to_float32_or_zero(p:values.y) as y,to_float32_or_zero(p:values.z) as z from (select array_join(json_extract_array(raw,'payload')) as p from phone where p:name='gyroscope')\n",
-          "refId": "A"
+          "refId": "A",
+          "sql": "select to_datetime64((p:time::int64)/1000000000,3) as time,to_float32_or_zero(p:values.x) as x,to_float32_or_zero(p:values.y) as y,to_float32_or_zero(p:values.z) as z from (select array_join(json_extract_array(raw,'payload')) as p from phone where p:name='gyroscope')"
         }
       ],
       "title": "XY Chart",
       "type": "xychart"
     }
   ],
+  "preload": false,
   "refresh": "",
-  "schemaVersion": 39,
+  "schemaVersion": 40,
   "tags": [],
   "templating": {
     "list": []
@@ -215,6 +242,6 @@
   "timezone": "",
   "title": "Phone Sensor",
   "uid": "a3406569-2c08-454c-8791-64064366e107",
-  "version": 3,
+  "version": 2,
   "weekStart": ""
 }

@@ -1,1 +1,0 @@
-curl -X POST localhost:8000/default/api/v1beta2/licenses/trial -d '{"userEmail": "test@test.test", "userName": "timeplus", "password": "changeme", "allowTrack": false }'
