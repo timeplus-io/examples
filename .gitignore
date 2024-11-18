@@ -2,3 +2,8 @@
 .DS_Store
 .gradle
 build
+*.class
+/testcontainers/bin
+/testcontainers/.settings
+testcontainers/.project
+testcontainers/.classpath
