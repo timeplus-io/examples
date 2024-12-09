@@ -1,6 +1,6 @@
 services:
   timeplus:
-    image: timeplus/timeplus-enterprise:2.5.9
+    image: timeplus/timeplus-enterprise:2.5.11
     environment:
       - ENABLE_AUTHENTICATION=false
     ports:
@@ -26,7 +26,7 @@ services:
       start_period: 10s
 
   init_sql:
-    image: timeplus/timeplus-enterprise:2.5.9
+    image: timeplus/timeplus-enterprise:2.5.11
     entrypoint: >
       /bin/bash -c "timeplusd client -h timeplus --queries-file=/init.sql"
     volumes:

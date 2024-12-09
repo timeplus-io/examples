@@ -1,6 +1,6 @@
 services:
   timeplus:
-    image: docker.timeplus.com/timeplus/timeplus-enterprise:2.5.9
+    image: docker.timeplus.com/timeplus/timeplus-enterprise:2.5.11
     pull_policy: always
     ports:
       - 3218:3218 #http port, default streaming mode

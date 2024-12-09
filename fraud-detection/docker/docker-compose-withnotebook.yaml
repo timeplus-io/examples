@@ -1,14 +1,14 @@
 name: timeplus-fraud-detection
 services:
   timeplus:
-    image: timeplus/timeplus-enterprise:2.5.4
+    image: timeplus/timeplus-enterprise:2.5.11
     pull_policy: always
     ports:
       - "8000:8000" # app server http
       - "8463:8463" # timeplusd tcp
       - "3218:3218" # timeplusd http
     healthcheck:
-      test: [ "CMD", "curl", "http://localhost:3218/proton/ping" ]
+      test: ["CMD", "curl", "http://localhost:3218/proton/ping"]
       interval: 2s
       timeout: 10s
       retries: 3
@@ -18,13 +18,13 @@ services:
       - ./tp-sync:/timeplus/tp-sync/
 
   fraud-detector: # udf
-    image: fraud:830bdae  
+    image: fraud:830bdae
 
   transaction: # transaction simulator
     image: fraud:830bdae
     entrypoint: ["python", "transaction.py"]
     environment:
-    - TIMEPLUS_HOST=timeplus
+      - TIMEPLUS_HOST=timeplus
 
   notebook:
     image: timeplus-ibis:dev
@@ -34,9 +34,9 @@ services:
       - ./notebooks:/home/jovyan/work
     entrypoint: /bin/bash
     command: -c "jupyter notebook \
-                 --notebook-dir=/home/jovyan/work --ip='*' --port=8888 \
-                 --NotebookApp.token='' \
-                 --no-browser --allow-root"
+      --notebook-dir=/home/jovyan/work --ip='*' --port=8888 \
+      --NotebookApp.token='' \
+      --no-browser --allow-root"
 
 volumes:
   timeplus_data:

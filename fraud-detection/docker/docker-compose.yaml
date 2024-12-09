@@ -1,7 +1,7 @@
 name: timeplus-fraud-detection
 services:
   timeplus:
-    image: timeplus/timeplus-enterprise:2.5.9
+    image: timeplus/timeplus-enterprise:2.5.11
     pull_policy: always
     ports:
       - "8000:8000" # app server http

@@ -1,6 +1,6 @@
 services:
   timeplus:
-    image: timeplus/timeplus-enterprise:2.5.9
+    image: timeplus/timeplus-enterprise:2.5.11
     container_name: timeplus
     ports:
       - "8000:8000" # Neutron

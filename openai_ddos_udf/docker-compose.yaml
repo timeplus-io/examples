@@ -1,6 +1,6 @@
 services:
   timeplus:
-    image: timeplus/timeplus-enterprise:2.5.9
+    image: timeplus/timeplus-enterprise:2.5.11
     environment:
       - ENABLE_AUTHENTICATION=true
       - TIMEPLUSD_CONN_MAX_IDLE_TIME=60
