@@ -1,0 +1,27 @@
+services:
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.4.10
+    environment:
+    - ENABLE_AUTHENTICATION=true
+    - TIMEPLUSD_ADMIN_PASSWORD=Password!
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:3218/timeplusd/ping"]
+      interval: 2s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+  
+  embedding:
+    image: timeplus/ragdemo:latest
+    ports:
+      - "5001:5001"
+    environment:
+    - OPENAI_API_KEY=${OPENAI_API_KEY}
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:5001/"]
+      interval: 2s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
