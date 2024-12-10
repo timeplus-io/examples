@@ -8,9 +8,17 @@ CREATE STREAM IF NOT EXISTS vector_store
   `metadata` map(string, string)
 );
 
-DROP FUNCTION embedding;
+DROP FUNCTION IF EXISTS embedding;
 
 -- create embedding UDF, udf is stateless, recreate it is OK
 CREATE REMOTE FUNCTION embedding(input string) RETURNS string 
-URL 'http://embedding:5001/embedding'
+URL 'http://udf:5001/embedding'
+EXECUTION_TIMEOUT 60000;
+
+
+DROP FUNCTION IF EXISTS chat;
+
+-- create chat UDF, udf is stateless, recreate it is OK
+CREATE REMOTE FUNCTION chat(input string) RETURNS string 
+URL 'http://udf:5001/chat'
 EXECUTION_TIMEOUT 60000;

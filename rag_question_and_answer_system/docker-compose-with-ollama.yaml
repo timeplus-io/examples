@@ -16,7 +16,7 @@ services:
     volumes:
       - timeplus_data:/timeplus/data/
   
-  embedding:
+  udf:
     image: timeplus/ragdemo:latest
     ports:
       - "5001:5001"

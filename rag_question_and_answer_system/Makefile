@@ -14,6 +14,9 @@ test_service:
 test_embedding:
 	curl -X POST http://localhost:5001/embedding -H 'Content-Type: application/json' -d '{"input":["This is a sample input text","I hate u "]}'
 
+test_chat:
+	curl -X POST http://localhost:5001/chat -H 'Content-Type: application/json' -d '{"input":["hello","what is the result of 1 + 1"]}'
+
 test_index:
 	python -m rag.index
 

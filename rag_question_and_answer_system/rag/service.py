@@ -22,6 +22,16 @@ def _embedding(input):
     )
     return response.data[0].embedding
 
+def _complete(messages):
+    response = client.chat.completions.create(
+        model="llama3.2:1b", 
+        messages=[
+                {"role": "user", "content": messages},
+            ],
+        temperature=0
+    )
+    return response.choices[0].message.content
+
 @app.get("/")
 def info():
     return {"info": "timeplus chat bot server"}
@@ -31,5 +41,13 @@ def embedding(item: PredictItem):
     results = []
     for input in item.input:
         results.append(_embedding(input))
+
+    return {"result": results}
+
+@app.post("/chat")
+def chat(item: PredictItem):
+    results = []
+    for input in item.input:
+        results.append(_complete(input))
 
     return {"result": results}
