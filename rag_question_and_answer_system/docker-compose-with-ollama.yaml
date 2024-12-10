@@ -21,13 +21,20 @@ services:
     ports:
       - "5001:5001"
     environment:
-      - LLM_BASE_URL=http://host.docker.internal:11434/v1/
+      - LLM_BASE_URL=http://ollama:11434/v1/
     healthcheck:
       test: ["CMD", "curl", "http://localhost:5001/"]
       interval: 2s
       timeout: 10s
       retries: 3
       start_period: 10s
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
 
   init:
     image: timeplus/timeplus-enterprise:2.5.11
@@ -41,4 +48,6 @@ services:
 
 volumes:
   timeplus_data:
+    driver: local
+  ollama_data:
     driver: local
