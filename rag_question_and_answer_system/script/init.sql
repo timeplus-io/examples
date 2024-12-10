@@ -8,7 +8,9 @@ CREATE STREAM IF NOT EXISTS vector_store
   `metadata` map(string, string)
 );
 
--- create embedding UDF
+DROP FUNCTION embedding;
+
+-- create embedding UDF, udf is stateless, recreate it is OK
 CREATE REMOTE FUNCTION embedding(input string) RETURNS string 
 URL 'http://embedding:5001/embedding'
 EXECUTION_TIMEOUT 60000;
