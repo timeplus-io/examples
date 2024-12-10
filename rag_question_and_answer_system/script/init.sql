@@ -11,7 +11,7 @@ CREATE STREAM IF NOT EXISTS vector_store
 DROP FUNCTION IF EXISTS embedding;
 
 -- create embedding UDF, udf is stateless, recreate it is OK
-CREATE REMOTE FUNCTION embedding(input string) RETURNS string 
+CREATE REMOTE FUNCTION embedding(input string) RETURNS array(float64) 
 URL 'http://udf:5001/embedding'
 EXECUTION_TIMEOUT 60000;
 
