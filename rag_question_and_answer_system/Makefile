@@ -13,6 +13,9 @@ service:
 test_embedding:
 	curl -X POST http://localhost:5001/embedding -H 'Content-Type: application/json' -d '{"input":["This is a sample input text","I hate u "]}'
 
+index:
+	python -m rag.index
+
 docker: Dockerfile
 	docker build --build-arg VERSION="$(VERSION)" -t $(IMAGE_NAME) .
 

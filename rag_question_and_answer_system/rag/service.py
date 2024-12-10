@@ -1,22 +1,26 @@
 import os
-import openai
+from openai import OpenAI
 
 from typing import List
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+client = OpenAI(
+                base_url=os.getenv("LLM_BASE_URL"),
+                # required but ignored
+                api_key="ollama"
+            )
 app = FastAPI()
 
 class PredictItem(BaseModel):
     input: List[str]
 
 def _embedding(input):
-    response = openai.Embedding.create(
+    response = client.embeddings.create(
         input=input,
-        model="text-embedding-ada-002"
+        model="mxbai-embed-large:latest"
     )
-    return response['data'][0]['embedding']
+    return response.data[0].embedding
 
 @app.get("/")
 def info():

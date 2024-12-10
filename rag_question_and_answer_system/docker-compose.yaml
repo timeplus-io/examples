@@ -1,27 +1,53 @@
 services:
   timeplus:
-    image: timeplus/timeplus-enterprise:2.4.10
+    image: timeplus/timeplus-enterprise:2.5.11
     environment:
     - ENABLE_AUTHENTICATION=true
     - TIMEPLUSD_ADMIN_PASSWORD=Password!
     ports:
       - "8000:8000"
+      - "8463:8463"
     healthcheck:
       test: ["CMD", "curl", "http://localhost:3218/timeplusd/ping"]
       interval: 2s
       timeout: 10s
       retries: 3
       start_period: 10s
+    volumes:
+      - timeplus_data:/timeplus/data/
   
   embedding:
     image: timeplus/ragdemo:latest
     ports:
       - "5001:5001"
     environment:
-    - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - LLM_BASE_URL=http://ollama:11434/v1/
     healthcheck:
       test: ["CMD", "curl", "http://localhost:5001/"]
       interval: 2s
       timeout: 10s
       retries: 3
       start_period: 10s
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+  init:
+    image: timeplus/timeplus-enterprise:2.5.11
+    entrypoint: >
+      /bin/bash -c "timeplusd client --user proton --password Password! -h timeplus --queries-file=/init.sql"
+    volumes:
+      - ./script/init.sql:/init.sql
+    depends_on:
+      timeplus:
+        condition: service_healthy
+
+volumes:
+  timeplus_data:
+    driver: local
+  ollama_data:
+    driver: local
