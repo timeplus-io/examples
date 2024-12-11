@@ -12,10 +12,14 @@ This examples shows how to build a LLM based question answer system using
 - run the docker stack with `docker compose up -d`
 - run the onboarding process of timeplus with localhost:8000, create initial user
 - setup following environment
-    export LLM_BASE_URL=http://localhost:11434/v1
-    export TIMEPLUS_HOST=localhost
-    export TIMEPLUS_USER=username
-    export TIMEPLUS_PASSWORD=password
+
+```sh
+export LLM_BASE_URL=http://localhost:11434/v1
+export TIMEPLUS_HOST=localhost
+export TIMEPLUS_USER=username
+export TIMEPLUS_PASSWORD=password
+```
+
 - download all the orginal timeplus doc from https://tp-solutions.s3.us-west-2.amazonaws.com/timeplus_doc/timeplus_docs.zip, unzip it to folder timeplus_doc
 - run 'make index' to index all the documents into Timeplus
 - run the following question answer SQL with different questions
