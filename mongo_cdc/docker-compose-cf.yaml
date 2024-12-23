@@ -1,0 +1,62 @@
+version: '3.9'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  mongo:
+    image: mongo:5.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    command: mongod --replSet rs0 --oplogSize 128 --bind_ip_all
+    volumes:
+      - mongo_data:/data/db
+
+  mongo-init-replica:
+    image: mongo:5.0
+    depends_on:
+      - mongo
+    entrypoint: >
+      bash -c "
+      sleep 10;
+      mongo --host mongo:27017 <<EOF
+        rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'mongo:27017'}]})
+      EOF"
+
+  connect:
+    image: debezium/connect:3.0.0.Final
+    ports:
+      - "8083:8083"
+    depends_on:
+      - kafka
+      - mongo
+    environment:
+      BOOTSTRAP_SERVERS: kafka:9092
+      GROUP_ID: "1"
+      CONFIG_STORAGE_TOPIC: debezium_config
+      OFFSET_STORAGE_TOPIC: debezium_offset
+      STATUS_STORAGE_TOPIC: debezium_status
+      KEY_CONVERTER_SCHEMAS_ENABLE: "false"
+      VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
+      CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_REST_ADVERTISED_HOST_NAME: "connect"
+      CONNECT_PLUGIN_PATH: "/kafka/connect"
+    volumes:
+      - ./plugins:/kafka/connect
+
+volumes:
+  mongo_data:

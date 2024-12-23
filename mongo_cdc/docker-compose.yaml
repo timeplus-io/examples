@@ -1,0 +1,78 @@
+version: '3.9'
+services:
+  redpanda:
+    image: redpandadata/redpanda:v23.1.4
+    container_name: redpanda
+    ports:
+      - "9092:9092"
+      - "9644:9644"
+    command:
+      - redpanda start
+      - --smp 1
+      - --overprovisioned
+      - --node-id 0
+      - --kafka-addr PLAINTEXT://0.0.0.0:29092,OUTSIDE://0.0.0.0:9092
+      - --advertise-kafka-addr PLAINTEXT://redpanda:29092,OUTSIDE://localhost:9092
+      - --pandaproxy-addr 0.0.0.0:8082
+      - --advertise-pandaproxy-addr localhost:8082
+
+  mongo:
+    image: mongo:5.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    command: mongod --replSet rs0 --oplogSize 128 --bind_ip_all
+    volumes:
+      - mongo_data:/data/db
+
+  mongo-init-replica:
+    image: mongo:5.0
+    depends_on:
+      - mongo
+    entrypoint: >
+      bash -c "
+      sleep 10;
+      mongo --host mongo:27017 <<EOF
+        rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'mongo:27017'}]})
+        EOF"
+
+  connect:
+    image: debezium/connect:3.0.0.Final
+    ports:
+      - "8083:8083"
+    depends_on:
+      - redpanda
+      - mongo
+    environment:
+      BOOTSTRAP_SERVERS: redpanda:29092
+      GROUP_ID: "1"
+      CONFIG_STORAGE_TOPIC: debezium_config
+      OFFSET_STORAGE_TOPIC: debezium_offset
+      STATUS_STORAGE_TOPIC: debezium_status
+      KEY_CONVERTER_SCHEMAS_ENABLE: "false"
+      VALUE_CONVERTER_SCHEMAS_ENABLE: "false"
+      CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+      CONNECT_REST_ADVERTISED_HOST_NAME: "connect"
+      CONNECT_PLUGIN_PATH: "/kafka/connect"
+    volumes:
+      - ./plugins:/kafka/connect
+
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.5.11
+    ports:
+      - "8000:8000"
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:3218"]
+      interval: 2s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - timeplus_data:/timeplus/data/
+
+volumes:
+  mongo_data:
+    driver: local
+  timeplus_data:
+    driver: local
