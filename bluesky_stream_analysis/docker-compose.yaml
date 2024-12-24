@@ -1,0 +1,29 @@
+services:
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.5.11
+    environment:
+    - ENABLE_AUTHENTICATION=true
+    - TIMEPLUSD_ADMIN_PASSWORD=Password!
+    ports:
+      - "8000:8000"
+      - "8463:8463"
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:3218/timeplusd/ping"]
+      interval: 2s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - timeplus_data:/timeplus/data/
+
+  init:
+    image: node:latest
+    entrypoint: >
+      npx @sdairs/bluebird start timeplus --token proton:Password! --endpoint http://timeplus:8000/default --stream bluebird
+    depends_on:
+      timeplus:
+        condition: service_healthy
+
+volumes:
+  timeplus_data:
+    driver: local
