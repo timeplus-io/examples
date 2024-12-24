@@ -17,7 +17,7 @@ services:
       - --advertise-pandaproxy-addr localhost:8082
 
   mongo:
-    image: mongo:5.0
+    image: mongo:6.0
     container_name: mongodb
     ports:
       - "27017:27017"
@@ -26,15 +26,15 @@ services:
       - mongo_data:/data/db
 
   mongo-init-replica:
-    image: mongo:5.0
+    image: rtsp/mongosh
     depends_on:
       - mongo
     entrypoint: >
       bash -c "
       sleep 10;
-      mongo --host mongo:27017 <<EOF
-        rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'mongo:27017'}]})
-        EOF"
+      mongosh --host mongodb:27017 <<EOF
+        rs.initiate({_id: 'rs0', members: [{_id: 0, host: 'mongodb:27017'}]})
+      EOF"
 
   connect:
     image: debezium/connect:3.0.0.Final

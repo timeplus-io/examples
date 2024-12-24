@@ -11,6 +11,7 @@ curl -X POST http://localhost:8083/connectors \
     "database.include.list": "testdb",
     "collection.include.list": "testdb.testcollection",
     "topic.prefix": "dbserver1",
+    "mongodb.change.stream.full.document": "updateLookup",
     "database.history.kafka.bootstrap.servers": "kafka:9092",
     "database.history.kafka.topic": "schema-changes.testdb"
   }

@@ -11,14 +11,14 @@ register:
 				"connector.class": "io.debezium.connector.mongodb.MongoDbConnector", \
 				"tasks.max": "1", \
 				"mongodb.connection.string": "mongodb://mongo:27017/?replicaSet=rs0", \
-				"mongodb.name": "dbserver1", \
-				"database.include.list": "testdb", \
-				"collection.include.list": "testdb.testcollection", \
-				"topic.prefix": "dbserver1", \
-				"database.history.kafka.bootstrap.servers": "kafka:9092", \
-				"database.history.kafka.topic": "schema-changes.testdb" \
+				"collection.include.list": "testdb.testcollection*" , \
+				"capture.mode": "change_streams_update_full_with_pre_image" , \
+				"topic.prefix": "fullfillment" \
 			} \
 		}'
 
+delete:
+	curl -X DELETE http://localhost:8083/connectors/mongodb-connector
+
 mongo_client:
-	docker exec -it mongodb mongo
+	docker run -it --rm rtsp/mongosh mongosh mongodb://host.docker.internal:27017
