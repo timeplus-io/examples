@@ -16,13 +16,21 @@ services:
     volumes:
       - timeplus_data:/timeplus/data/
 
-  init:
+  bluebird:
     image: node:latest
     entrypoint: >
       npx @sdairs/bluebird start timeplus --token proton:Password! --endpoint http://timeplus:8000/default --stream bluebird
     depends_on:
       timeplus:
         condition: service_healthy
+
+  notebook:
+    image: jupyter/scipy-notebook:latest
+    entrypoint: jupyter notebook --ip='*' --NotebookApp.token='' --NotebookApp.password=''
+    ports:
+      - 8888:8888
+    volumes:
+      - ./notebooks:/home/jovyan/work
 
 volumes:
   timeplus_data:
