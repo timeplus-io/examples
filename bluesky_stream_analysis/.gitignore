@@ -1,3 +1,4 @@
 notebooks/
+.venv/
 env.sh
 bluesky/__pycache__
