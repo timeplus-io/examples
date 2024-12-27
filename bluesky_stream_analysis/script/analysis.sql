@@ -98,6 +98,46 @@ GROUP BY
   following
 ORDER BY
   count DESC
+LIMIT 5;
+
+-- udf get user by did
+CREATE REMOTE FUNCTION fetch_user(did string) RETURNS string 
+URL 'http://udf:5001/user'
+EXECUTION_TIMEOUT 60000;
+
+-- udf get post by cid/uri
+CREATE REMOTE FUNCTION fetch_post(cid string, uri string) RETURNS string 
+URL 'http://udf:5001/post'
+EXECUTION_TIMEOUT 60000;
+
+-- top follow in 5 min enriched with fetch user UDF
+SELECT
+  count() AS count, record:commit.record.subject AS following, fetch_user(following) AS user, user:display_name AS display_name
+FROM
+  table(bluebird)
+WHERE
+  (record:commit.collection = 'app.bsky.graph.follow') AND (following != '') AND (_tp_time > (now() - 5m))
+GROUP BY
+  following
+ORDER BY
+  count DESC
 LIMIT 5
+
+-- top replied post enriched with fetch post UDF
+WITH top_5_reply_5m AS
+  (
+    SELECT
+      window_start, top_k((record:commit.record.reply.root.cid, record:commit.record.reply.root.uri) AS root, 5, true) AS top_5_root
+    FROM
+      tumble(bluebird, 5m)
+    WHERE
+      (record:commit.collection = 'app.bsky.feed.post') AND (_tp_time > (now() - 10m)) AND ((root.1) != '')
+    GROUP BY
+      window_start
+  )
+SELECT
+  window_start AS time, array_join(top_5_root) AS top5, top5.1.1 AS cid, top5.1.2 AS uri, top5.2 AS count, fetch_post(cid,uri ) as post
+FROM
+  top_5_reply_5m
 
 

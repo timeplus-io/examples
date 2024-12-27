@@ -20,7 +20,7 @@ class UserFetchItem(BaseModel):
 
 class PostFetchItem(BaseModel):
     cid: List[str]
-    url: List[str]
+    uri: List[str]
 
 
 @app.get("/")
@@ -47,8 +47,8 @@ def post(item: PostFetchItem):
     results = []
     success = post_fetcher.authenticate(username, passowrd)
 
-    for (cid, url) in zip(item.cid, item.url):
-        content = post_fetcher.get_post_by_cid(cid, url)
+    for (cid, uri) in zip(item.cid, item.uri):
+        content = post_fetcher.get_post_by_cid(cid, uri)
         if success:
             results.append(content.to_json())
         else:
