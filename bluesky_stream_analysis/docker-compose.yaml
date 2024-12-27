@@ -24,6 +24,20 @@ services:
       timeplus:
         condition: service_healthy
 
+  udf:
+    image: timeplus/bluesky:441eed8
+    ports:
+      - "5001:5001"
+    environment:
+    - BLUESKY_USER=${BLUESKY_USER}
+    - BLUESKY_PASSWORD=${BLUESKY_PASSWORD}
+    healthcheck:
+      test: ["CMD", "curl", "http://localhost:5001/"]
+      interval: 2s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
   notebook:
     image: jupyter/scipy-notebook:latest
     entrypoint: jupyter notebook --ip='*' --NotebookApp.token='' --NotebookApp.password=''

@@ -1,2 +1,3 @@
 notebooks/
 env.sh
+bluesky/__pycache__
