@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "test": "jest",
+    "perf": "node perf_test.js"
+  },
+  "dependencies": {
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

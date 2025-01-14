@@ -1,0 +1,15 @@
+services:
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.5.11
+    environment:
+    - ENABLE_AUTHENTICATION=true
+    - TIMEPLUSD_ADMIN_PASSWORD=Password!
+    ports:
+      - "8000:8000"
+      - "8463:8463"
+    volumes:
+      - timeplus_data:/timeplus/data/
+
+volumes:
+  timeplus_data:
+    driver: local

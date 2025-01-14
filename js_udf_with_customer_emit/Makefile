@@ -1,0 +1,3 @@
+
+run:
+	docker compose up
