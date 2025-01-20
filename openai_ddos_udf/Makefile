@@ -1,3 +1,10 @@
+VERSION = $(shell git rev-parse --short HEAD)
+BIN_NAME = ragdemo
+IMAGE_NAME = $(BIN_NAME):$(VERSION)
+DOCKER_ID_USER = timeplus
+FULLNAME=$(DOCKER_ID_USER)/${IMAGE_NAME}
+FULLNAME_LATEST=$(DOCKER_ID_USER)/$(BIN_NAME):latest
+PWD = $(shell pwd)
 
 docker:
 	docker build -t ddos_detection .
