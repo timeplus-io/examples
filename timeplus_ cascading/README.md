@@ -7,6 +7,7 @@ Here is the quick start guide:
 login to these timeplus using `localhost:8000` which is central timeplus ,  `localhost:8001` and `localhost:8002` are `timeplus_edge_1` and  `timeplus_edge_2`
 
 
+```shell
                                                                                                                
     timeplus_edge_1                                                                                            
   ┌─────────────────────────────────────────────────┐           timeplus_central                               
@@ -17,5 +18,6 @@ login to these timeplus using `localhost:8000` which is central timeplus ,  `loc
   │network_flow_source───►mv_network───►network_flow◄───┘    └───────────────────────────────────────────────┘ 
   └─────────────────────────────────────────────────┘          timeplus                                        
                                                                external                                        
-                                                               stream                                          
+                                                               stream     
+```                                     
 
