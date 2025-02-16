@@ -1,0 +1,33 @@
+services:
+  timeplus_edge_1:
+    image: timeplus/timeplus-enterprise:2.6.2
+    ports:
+      - "8001:8000" 
+    volumes:
+      - timeplus_data_edge_1:/timeplus/data/
+      - ./tp-sync-edge:/timeplus/tp-sync/
+  
+  timeplus_edge_2:
+    image: timeplus/timeplus-enterprise:2.6.2
+    ports:
+      - "8002:8000" 
+    volumes:
+      - timeplus_data_edge_2:/timeplus/data/
+      - ./tp-sync-edge:/timeplus/tp-sync/
+
+  timeplus_central:
+    image: timeplus/timeplus-enterprise:2.6.2
+    ports:
+      - "8000:8000" 
+    volumes:
+      - timeplus_data_central:/timeplus/data/
+      - ./tp-sync-central:/timeplus/tp-sync/
+      
+
+volumes:
+  timeplus_data_edge_1:
+    driver: local
+  timeplus_data_edge_2:
+    driver: local
+  timeplus_data_central:
+    driver: local
