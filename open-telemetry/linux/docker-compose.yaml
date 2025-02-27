@@ -30,7 +30,7 @@ services:
     container_name: otel-collector
     volumes:
       - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
-      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/snap/docker/common/var-lib-docker/containers:/var/snap/docker/common/var-lib-docker/containers:ro
       - /var/run/docker.sock:/var/run/docker.sock
     command: ["--config=/etc/otel-collector-config.yaml"]
     depends_on:
@@ -38,3 +38,17 @@ services:
     ports:
       - "4317:4317" # OTLP gRPC
       - "4318:4318" # OTLP HTTP
+
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.7.0
+    ports:
+      - 8000:8000
+      - 8463:8463
+    volumes:
+      - timeplus_data:/timeplus/data/
+
+volumes:
+  redpanda-data:
+    driver: local
+  timeplus_data:
+    driver: local

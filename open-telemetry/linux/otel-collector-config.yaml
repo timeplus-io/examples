@@ -2,7 +2,7 @@ receivers:
   # Collect logs from Docker containers
   filelog:
     include:
-      - /var/lib/docker/containers/*/*.log
+      - /var/snap/docker/common/var-lib-docker/containers/*/*.log
     start_at: beginning
     operators:
       - type: json_parser
@@ -10,11 +10,9 @@ receivers:
           parse_from: attributes.time
           layout: '%Y-%m-%dT%H:%M:%S.%LZ'
       - type: add
-        field: container_id
-        value: attributes.container.id
-      - type: add
-        field: container_name
-        value: attributes.container.name
+        attributes:
+          container_id: attributes["container.id"]
+          container_name: attributes["container.name"]
 
   # Collect system metrics
   hostmetrics:
@@ -30,7 +28,7 @@ exporters:
     brokers: ["redpanda:9092"]
     protocol_version: 2.0.0
     topic: otel-data
-    encoding: json
+    encoding: otlp_json
 
 service:
   pipelines:

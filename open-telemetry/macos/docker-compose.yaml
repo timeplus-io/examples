@@ -38,3 +38,7 @@ services:
     ports:
       - "4317:4317" # OTLP gRPC
       - "4318:4318" # OTLP HTTP
+
+volumes:
+  redpanda-data:
+    driver: local
