@@ -141,3 +141,29 @@ FROM
   top_5_reply_5m
 
 
+-- with first image from post
+WITH top_5_reply_5m AS
+  (
+    SELECT
+      window_start, top_k((record:commit.record.reply.root.cid, record:commit.record.reply.root.uri) AS root, 5, true) AS top_5_root
+    FROM
+      tumble(bluebird, 5m)
+    WHERE
+      (record:commit.collection = 'app.bsky.feed.post') AND (_tp_time > (now() - 10m)) AND ((root.1) != '')
+    GROUP BY
+      window_start
+  )
+SELECT
+  window_start AS time, 
+  array_join(top_5_root) AS top5, 
+  top5.1.1 AS cid, 
+  top5.1.2 AS uri, 
+  top5.2 AS count, 
+  fetch_post(cid,uri ) as post,
+  post:text as text,
+  concat('https://cdn.bsky.app/img/feed_thumbnail/plain/', post:author_did, '/', (post:images[1]):cid, '@jpeg') as image_url
+FROM
+  top_5_reply_5m
+
+
+
