@@ -1,0 +1,43 @@
+{
+	"resourceLogs": [
+		{
+			"resource": {},
+			"scopeLogs": [
+				{
+					"scope": {},
+					"logRecords": [
+						{
+							"timeUnixNano": "1740685947576019752",
+							"observedTimeUnixNano": "1740685947662341186",
+							"body": {
+								"stringValue": "time=\"2025-02-27 19:52:26.774 +0000\" level=info msg=\"query started\" func=\"neutron/internal/query.(*Manager).Create\" file=\"/workspace/src/internal/query/manager.go:115\" ID=137928b8-1655-444d-b5b0-c4de163d11e2\n"
+							},
+							"attributes": [
+								{
+									"key": "time",
+									"value": {
+										"stringValue": "2025-02-27T19:52:27.576019752Z"
+									}
+								},
+								{
+									"key": "log.file.name",
+									"value": {
+										"stringValue": "d45782b42e6da886524512dad9c9b7f5c5b1af3694fbda104ba9e599af1aedde-json.log"
+									}
+								},
+								{
+									"key": "stream",
+									"value": {
+										"stringValue": "stdout"
+									}
+								}
+							],
+							"traceId": "",
+							"spanId": ""
+						}
+					]
+				}
+			]
+		}
+	]
+}

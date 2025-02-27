@@ -28,9 +28,12 @@ services:
   otel-collector:
     image: otel/opentelemetry-collector-contrib:latest
     container_name: otel-collector
+    security_opt:
+      - apparmor:unconfined 
+    user: 1000:1000
     volumes:
       - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
-      - /var/snap/docker/common/var-lib-docker/containers:/var/snap/docker/common/var-lib-docker/containers:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
       - /var/run/docker.sock:/var/run/docker.sock
     command: ["--config=/etc/otel-collector-config.yaml"]
     depends_on:
@@ -46,6 +49,7 @@ services:
       - 8463:8463
     volumes:
       - timeplus_data:/timeplus/data/
+      - /var/snap/docker/common/var-lib-docker/containers:/var/snap/docker/common/var-lib-docker/containers:ro
 
 volumes:
   redpanda-data:

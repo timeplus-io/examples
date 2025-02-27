@@ -2,26 +2,17 @@ receivers:
   # Collect logs from Docker containers
   filelog:
     include:
-      - /var/snap/docker/common/var-lib-docker/containers/*/*.log
+      - /var/lib/docker/containers/*/*.log  # For standard Docker
+      - /var/snap/docker/common/var-lib-docker/containers/*/*.log  # For Snap-installed Docker
     start_at: beginning
     operators:
       - type: json_parser
         timestamp:
           parse_from: attributes.time
           layout: '%Y-%m-%dT%H:%M:%S.%LZ'
-      - type: add
-        attributes:
-          container_id: attributes["container.id"]
-          container_name: attributes["container.name"]
-
-  # Collect system metrics
-  hostmetrics:
-    collection_interval: 10s
-    scrapers:
-      cpu: {}
-      memory: {}
-      disk: {}
-      load: {}
+      - type: move
+        from: attributes.log
+        to: body
 
 exporters:
   kafka:
@@ -36,6 +27,3 @@ service:
       receivers: [filelog]
       exporters: [kafka]
 
-    metrics:
-      receivers: [hostmetrics]
-      exporters: [kafka]
