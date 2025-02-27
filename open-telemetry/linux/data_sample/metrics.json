@@ -1,0 +1,4619 @@
+{
+	"resourceMetrics": [
+		{
+			"resource": {},
+			"scopeMetrics": [
+				{
+					"scope": {
+						"name": "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/memoryscraper",
+						"version": "0.120.1"
+					},
+					"metrics": [
+						{
+							"name": "system.memory.usage",
+							"description": "Bytes of memory in use.",
+							"unit": "By",
+							"sum": {
+								"dataPoints": [
+									{
+										"attributes": [
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "used"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840447918025",
+										"asInt": "1465618432"
+									},
+									{
+										"attributes": [
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "free"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840447918025",
+										"asInt": "26602106880"
+									},
+									{
+										"attributes": [
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "buffered"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840447918025",
+										"asInt": "84168704"
+									},
+									{
+										"attributes": [
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "cached"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840447918025",
+										"asInt": "4756738048"
+									},
+									{
+										"attributes": [
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "slab_reclaimable"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840447918025",
+										"asInt": "213155840"
+									},
+									{
+										"attributes": [
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "slab_unreclaimable"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840447918025",
+										"asInt": "153780224"
+									}
+								],
+								"aggregationTemporality": 2
+							}
+						}
+					]
+				}
+			],
+			"schemaUrl": "https://opentelemetry.io/schemas/1.9.0"
+		},
+		{
+			"resource": {},
+			"scopeMetrics": [
+				{
+					"scope": {
+						"name": "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/diskscraper",
+						"version": "0.120.1"
+					},
+					"metrics": [
+						{
+							"name": "system.disk.io",
+							"description": "Disk bytes transferred.",
+							"unit": "By",
+							"sum": {
+								"dataPoints": [
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop0"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "4296192"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop0"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "1130496"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop3"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "6972416"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop3"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p14"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "443392"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p14"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p16"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "5911040"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p16"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "47289344"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop2"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "24932352"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop2"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop4"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "79088640"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop4"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "688947200"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "4133271552"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "673219072"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "4085981184"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p15"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "8346112"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p15"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "1024"
+									}
+								],
+								"aggregationTemporality": 2,
+								"isMonotonic": true
+							}
+						},
+						{
+							"name": "system.disk.io_time",
+							"description": "Time disk spent activated. On Windows, this is calculated as the inverse of disk idle time.",
+							"unit": "s",
+							"sum": {
+								"dataPoints": [
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop0"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.279
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop1"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.545
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop3"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.015
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p14"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.032
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p16"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.404
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop2"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.362
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop4"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.068
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 55.802
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p1"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 60.568
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p15"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.086
+									}
+								],
+								"aggregationTemporality": 2,
+								"isMonotonic": true
+							}
+						},
+						{
+							"name": "system.disk.merged",
+							"description": "The number of disk reads/writes merged into single physical disk access operations.",
+							"unit": "{operations}",
+							"sum": {
+								"dataPoints": [
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop0"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop0"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop3"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop3"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p14"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p14"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p16"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "34"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p16"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "47"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop2"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop2"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop4"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop4"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "5308"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "54733"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "3777"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "54686"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p15"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "1497"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p15"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									}
+								],
+								"aggregationTemporality": 2,
+								"isMonotonic": true
+							}
+						},
+						{
+							"name": "system.disk.operation_time",
+							"description": "Time spent in disk operations.",
+							"unit": "s",
+							"sum": {
+								"dataPoints": [
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop4"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.056
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop4"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 41.046
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 328.478
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 40.547
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 325.473
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p15"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.354
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p15"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.001
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop0"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.278
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop0"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.55
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop3"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.011
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop3"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p14"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.029
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p14"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p16"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.092
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p16"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 3.003
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop2"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.377
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop2"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0
+									}
+								],
+								"aggregationTemporality": 2,
+								"isMonotonic": true
+							}
+						},
+						{
+							"name": "system.disk.operations",
+							"description": "Disk operations count.",
+							"unit": "{operations}",
+							"sum": {
+								"dataPoints": [
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop0"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "159"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop0"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "69"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop3"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "667"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop3"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p14"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "79"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p14"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p16"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "177"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p16"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "224"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop2"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "669"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop2"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop4"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "2188"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop4"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "18630"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "35100"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "17974"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p1"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "34874"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p15"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "read"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "341"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p15"
+												}
+											},
+											{
+												"key": "direction",
+												"value": {
+													"stringValue": "write"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "2"
+									}
+								],
+								"aggregationTemporality": 2,
+								"isMonotonic": true
+							}
+						},
+						{
+							"name": "system.disk.pending_operations",
+							"description": "The queue size of pending I/O operations.",
+							"unit": "{operations}",
+							"sum": {
+								"dataPoints": [
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop0"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop1"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop3"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p14"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p16"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop2"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop4"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p1"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p15"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asInt": "0"
+									}
+								],
+								"aggregationTemporality": 2
+							}
+						},
+						{
+							"name": "system.disk.weighted_io_time",
+							"description": "Time disk spent activated multiplied by the queue length.",
+							"unit": "s",
+							"sum": {
+								"dataPoints": [
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p15"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.356
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop0"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.278
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop1"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.55
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop3"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.011
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p14"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.029
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p16"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 3.096
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop2"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.377
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "loop4"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 0.056
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 369.524
+									},
+									{
+										"attributes": [
+											{
+												"key": "device",
+												"value": {
+													"stringValue": "nvme0n1p1"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448039492",
+										"asDouble": 366.02
+									}
+								],
+								"aggregationTemporality": 2,
+								"isMonotonic": true
+							}
+						}
+					]
+				}
+			],
+			"schemaUrl": "https://opentelemetry.io/schemas/1.9.0"
+		},
+		{
+			"resource": {},
+			"scopeMetrics": [
+				{
+					"scope": {
+						"name": "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/loadscraper",
+						"version": "0.120.1"
+					},
+					"metrics": [
+						{
+							"name": "system.cpu.load_average.15m",
+							"description": "Average CPU Load over 15 minutes.",
+							"unit": "{thread}",
+							"gauge": {
+								"dataPoints": [
+									{
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448259601",
+										"asDouble": 0.14
+									}
+								]
+							}
+						},
+						{
+							"name": "system.cpu.load_average.1m",
+							"description": "Average CPU Load over 1 minute.",
+							"unit": "{thread}",
+							"gauge": {
+								"dataPoints": [
+									{
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448259601",
+										"asDouble": 0.41
+									}
+								]
+							}
+						},
+						{
+							"name": "system.cpu.load_average.5m",
+							"description": "Average CPU Load over 5 minutes.",
+							"unit": "{thread}",
+							"gauge": {
+								"dataPoints": [
+									{
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448259601",
+										"asDouble": 0.3
+									}
+								]
+							}
+						}
+					]
+				}
+			],
+			"schemaUrl": "https://opentelemetry.io/schemas/1.9.0"
+		},
+		{
+			"resource": {},
+			"scopeMetrics": [
+				{
+					"scope": {
+						"name": "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/hostmetricsreceiver/internal/scraper/cpuscraper",
+						"version": "0.120.1"
+					},
+					"metrics": [
+						{
+							"name": "system.cpu.time",
+							"description": "Total seconds each logical CPU spent on each mode.",
+							"unit": "s",
+							"sum": {
+								"dataPoints": [
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu0"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 5.52
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu0"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 2.91
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu0"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1608.82
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu0"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu0"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1.59
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu0"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu0"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu0"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 2.44
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu1"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 6.43
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu1"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 5.47
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu1"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1606.86
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu1"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu1"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.36
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu1"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu1"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu1"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 2.29
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu2"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 7.92
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu2"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 3.28
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu2"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1605.77
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu2"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu2"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.77
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu2"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu2"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu2"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 3.73
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu3"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 7.16
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu3"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 3.97
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu3"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1601.02
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu3"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu3"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 7.84
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu3"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.03
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu3"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.17
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu3"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1.67
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu4"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 6.02
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu4"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 2.7
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu4"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1610.64
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu4"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu4"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.79
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu4"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu4"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu4"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1.33
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu5"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 8.37
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu5"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 3.92
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu5"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1601.87
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu5"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu5"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.65
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu5"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.04
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu5"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu5"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 6.42
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu6"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 8.64
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu6"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 3.92
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu6"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1605.98
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu6"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu6"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.8
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu6"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.01
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu6"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.01
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu6"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1.91
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu7"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 4.68
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu7"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 2.12
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu7"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1612.33
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu7"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu7"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu7"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.05
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu7"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu7"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 2.33
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu8"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 6.71
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu8"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 4.27
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu8"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1608.35
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu8"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu8"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu8"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.11
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu8"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.02
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu8"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1.68
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu9"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 4.21
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu9"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 2.58
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu9"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1601.57
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu9"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu9"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1.2
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu9"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.03
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu9"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu9"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 11.6
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu10"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 7.08
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu10"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 2.99
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu10"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1608.34
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu10"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu10"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 2.15
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu10"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.05
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu10"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu10"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.93
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu11"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 7.7
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu11"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 3.91
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu11"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1597.51
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu11"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu11"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.96
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu11"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu11"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.91
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu11"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 11.3
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu12"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 5.33
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu12"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 2.57
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu12"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1607.74
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu12"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu12"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.74
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu12"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.01
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu12"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.08
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu12"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 5.32
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu13"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 6.82
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu13"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 3.19
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu13"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1609.2
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu13"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu13"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.89
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu13"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu13"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu13"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1.55
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu14"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 4.82
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu14"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 2.57
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu14"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1613.33
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu14"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu14"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu14"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.1
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu14"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu14"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0.72
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu15"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "user"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 7.2
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu15"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "system"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 3.14
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu15"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "idle"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 1602.98
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu15"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "interrupt"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu15"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "nice"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu15"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "softirq"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu15"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "steal"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 0
+									},
+									{
+										"attributes": [
+											{
+												"key": "cpu",
+												"value": {
+													"stringValue": "cpu15"
+												}
+											},
+											{
+												"key": "state",
+												"value": {
+													"stringValue": "wait"
+												}
+											}
+										],
+										"startTimeUnixNano": "1740681217000000000",
+										"timeUnixNano": "1740682840448291129",
+										"asDouble": 8.14
+									}
+								],
+								"aggregationTemporality": 2,
+								"isMonotonic": true
+							}
+						}
+					]
+				}
+			],
+			"schemaUrl": "https://opentelemetry.io/schemas/1.9.0"
+		}
+	]
+}
