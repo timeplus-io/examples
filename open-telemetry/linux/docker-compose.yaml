@@ -49,7 +49,6 @@ services:
       - 8463:8463
     volumes:
       - timeplus_data:/timeplus/data/
-      - /var/snap/docker/common/var-lib-docker/containers:/var/snap/docker/common/var-lib-docker/containers:ro
 
 volumes:
   redpanda-data:

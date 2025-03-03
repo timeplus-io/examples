@@ -1,20 +1,10 @@
 receivers:
-  # Collect logs from Docker containers
-  filelog:
-    include:
-      - /var/lib/docker/containers/*/*.log
-    start_at: beginning
-    operators:
-      - type: json_parser
-        timestamp:
-          parse_from: attributes.time
-          layout: '%Y-%m-%dT%H:%M:%S.%LZ'
-      - type: add
-        field: container_id
-        value: attributes.container.id
-      - type: add
-        field: container_name
-        value: attributes.container.name
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+      http:
+        endpoint: 0.0.0.0:4318
 
   # Collect system metrics
   hostmetrics:
@@ -25,19 +15,35 @@ receivers:
       disk: {}
       load: {}
 
+processors:
+  batch:
+    timeout: 1s
+    send_batch_size: 1024
+  
+  resource:
+    attributes:
+      - key: environment
+        value: development
+        action: upsert
+
 exporters:
-  kafka:
+  kafka/logs:
     brokers: ["redpanda:9092"]
-    protocol_version: 2.0.0
-    topic: otel-data
-    encoding: json
+    topic: "otel-logs"
+    encoding: otlp_json
+
+  kafka/metrics:
+    brokers: ["redpanda:9092"]
+    topic: "otel-metrics"
 
 service:
   pipelines:
     logs:
-      receivers: [filelog]
-      exporters: [kafka]
+      receivers: [otlp]  # Receives logs via OTLP
+      processors: []
+      exporters: [kafka/logs]
 
     metrics:
-      receivers: [hostmetrics]
-      exporters: [kafka]
+      receivers: [hostmetrics]  # Collects system + OTLP metrics
+      processors: []
+      exporters: [kafka/metrics]

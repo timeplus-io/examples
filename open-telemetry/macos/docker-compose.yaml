@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   redpanda:
     image: redpandadata/redpanda:v23.3.4
@@ -24,21 +23,54 @@ services:
       - redpanda-data:/var/lib/redpanda
     environment:
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    networks:
+      - logging-network
 
   otel-collector:
     image: otel/opentelemetry-collector-contrib:latest
     container_name: otel-collector
     volumes:
       - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
-      - /var/lib/docker/containers:/var/lib/docker/containers:ro
-      - /var/run/docker.sock:/var/run/docker.sock
     command: ["--config=/etc/otel-collector-config.yaml"]
     depends_on:
       - redpanda
     ports:
       - "4317:4317" # OTLP gRPC
       - "4318:4318" # OTLP HTTP
+      - "8888:8888"   # Metrics
+    networks:
+      - logging-network
+
+  vector:
+    image: timberio/vector:0.45.0-debian
+    container_name: vector
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # Required for reading container logs
+      - ./vector.toml:/etc/vector/vector.toml
+    environment:
+      - VECTOR_CONFIG=/etc/vector/vector.toml
+    depends_on:
+      - otel-collector
+    networks:
+      - logging-network
+
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.7.0
+    ports:
+      - 8000:8000
+      - 8463:8463
+    volumes:
+      - timeplus_data:/timeplus/data/
+    networks:
+      - logging-network
+  
 
 volumes:
   redpanda-data:
     driver: local
+  timeplus_data:
+    driver: local
+
+networks:
+  logging-network:
+    driver: bridge
