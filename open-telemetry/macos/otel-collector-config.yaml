@@ -19,12 +19,6 @@ processors:
   batch:
     timeout: 1s
     send_batch_size: 1024
-  
-  resource:
-    attributes:
-      - key: environment
-        value: development
-        action: upsert
 
 exporters:
   kafka/logs:

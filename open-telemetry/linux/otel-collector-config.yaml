@@ -14,16 +14,48 @@ receivers:
         from: attributes.log
         to: body
 
+  # Collect system metrics
+  hostmetrics:
+    collection_interval: 10s
+    scrapers:
+      cpu: {}
+      memory: {}
+      disk: {}
+      load: {}
+
+processors:
+  batch:
+    timeout: 1s
+    send_batch_size: 1024
+  
+  resource:
+    attributes:
+      - key: environment
+        value: development
+        action: upsert
+
 exporters:
-  kafka:
+  kafka/logs:
     brokers: ["redpanda:9092"]
-    protocol_version: 2.0.0
-    topic: otel-data
+    topic: "otel-logs"
+    encoding: otlp_json
+
+  kafka/metrics:
+    brokers: ["redpanda:9092"]
+    topic: "otel-metrics"
     encoding: otlp_json
 
 service:
   pipelines:
     logs:
       receivers: [filelog]
-      exporters: [kafka]
+      processors: [batch]
+      exporters: [kafka/logs]
+
+    metrics:
+      receivers: [hostmetrics]
+      processors: [batch]
+      exporters: [kafka/metrics]
+
+    
 
