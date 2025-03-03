@@ -29,15 +29,16 @@ exporters:
   kafka/metrics:
     brokers: ["redpanda:9092"]
     topic: "otel-metrics"
+    encoding: otlp_json
 
 service:
   pipelines:
     logs:
       receivers: [otlp]  # Receives logs via OTLP
-      processors: []
+      processors: [batch]
       exporters: [kafka/logs]
 
     metrics:
       receivers: [hostmetrics]  # Collects system + OTLP metrics
-      processors: []
+      processors: [batch]
       exporters: [kafka/metrics]
