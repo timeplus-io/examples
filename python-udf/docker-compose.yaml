@@ -3,7 +3,9 @@ services:
     image: timeplus/timeplus-enterprise:2.7.1-rc.3
     platform: linux/amd64
     ports:
-      - 8000:8000
+      - 8000:8000 # Timeplus Application 
+      - 8463:8463 # Timeplusd TCP
+      - 8123:8123 # Timeplusd REST API
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
     volumes:
