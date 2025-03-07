@@ -1,0 +1,15 @@
+services:
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.7.1-rc.3
+    platform: linux/amd64
+    ports:
+      - 8000:8000
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - timeplus_data:/timeplus/data/
+      - ./tp-sync:/timeplus/tp-sync/
+
+volumes:
+  timeplus_data:
+    driver: local
