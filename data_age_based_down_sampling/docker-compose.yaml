@@ -1,0 +1,13 @@
+services:
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.7.1
+    platform: linux/amd64
+    ports:
+      - 8000:8000
+    volumes:
+      - timeplus_data:/timeplus/data/
+      - ./tp-sync:/timeplus/tp-sync/
+
+volumes:
+  timeplus_data:
+    driver: local
