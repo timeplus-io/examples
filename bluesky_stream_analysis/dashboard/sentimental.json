@@ -1,0 +1,104 @@
+[
+    {
+      "id": "6632a5a9-3913-457c-9206-9049180d4c70",
+      "title": "Latest Post",
+      "description": "",
+      "position": {
+        "h": 4,
+        "nextX": 6,
+        "nextY": 5,
+        "w": 6,
+        "x": 0,
+        "y": 1
+      },
+      "viz_type": "chart",
+      "viz_content": "WITH '{{filter_key_words}}' AS key_words\nSELECT\n  record:commit:record:text AS text\nFROM\n  bluebird\nWHERE\n  (record:commit.collection = 'app.bsky.feed.post') \n  AND array_exists(kw -> (position(lower(record:commit.record.text), lower(kw)) > 0), split_by_string(',', key_words)) \n  and _tp_time > now()-1m",
+      "viz_config": {
+        "chartType": "md",
+        "config": {
+          "content": "{{text}}",
+          "updateKey": "",
+          "updateMode": "all"
+        }
+      }
+    },
+    {
+      "id": "5b61e3a2-6fb7-4923-8fb1-657212eeb75e",
+      "title": "new panel",
+      "description": "",
+      "position": {
+        "h": 1,
+        "nextX": 7,
+        "nextY": 1,
+        "w": 3,
+        "x": 4,
+        "y": 0
+      },
+      "viz_type": "control",
+      "viz_content": "",
+      "viz_config": {
+        "chartType": "text",
+        "defaultValue": "tariffs,trumptariffs,tradewar",
+        "inlineValues": "",
+        "label": "Search Key Words",
+        "target": "filter_key_words"
+      }
+    },
+    {
+      "id": "9569056d-84fd-4b25-ad83-724fc17ced62",
+      "title": "Sentimental Score Trend",
+      "description": "",
+      "position": {
+        "x": 6,
+        "y": 1,
+        "w": 6,
+        "h": 4,
+        "nextX": 12,
+        "nextY": 5
+      },
+      "viz_type": "chart",
+      "viz_content": "WITH '{{filter_key_words}}' AS key_words, scores AS\n  (\n    SELECT\n      _tp_time AS time, record:commit:record:text AS text, sentiment_analyzer(text) AS score, score:label AS label, cast(score:score, 'float') AS sentiment_score\n    FROM\n      bluebird\n    WHERE\n      (record:commit.collection = 'app.bsky.feed.post') AND array_exists(kw -> (position(lower(record:commit.record.text), lower(kw)) > 0), split_by_string(',', key_words)) AND (_tp_time > (now() - 1m))\n  )\nSELECT\n  window_start, label, avg(sentiment_score) AS avg_sentiment_score\nFROM\n  tumble(scores, time, 5s)\nGROUP BY\n  window_start, label",
+      "viz_config": {
+        "chartType": "line",
+        "config": {
+          "color": "label",
+          "colors": [
+            "#ED64A6",
+            "#F0BE3E",
+            "#DA4B36",
+            "#9A1563",
+            "#FF4A71",
+            "#D12D50",
+            "#8934D9",
+            "#D53F8C",
+            "#F7775A",
+            "#8934D9"
+          ],
+          "dataLabel": true,
+          "fractionDigits": 2,
+          "gridlines": true,
+          "legend": true,
+          "lineStyle": "curve",
+          "points": false,
+          "showAll": false,
+          "unit": {
+            "position": "left",
+            "value": ""
+          },
+          "xAxis": "window_start",
+          "xFormat": "",
+          "xRange": "Infinity",
+          "xTitle": "",
+          "yAxis": "avg_sentiment_score",
+          "yRange": {
+            "max": null,
+            "min": null
+          },
+          "yTickLabel": {
+            "maxChar": 25
+          },
+          "yTitle": ""
+        }
+      }
+    }
+  ]

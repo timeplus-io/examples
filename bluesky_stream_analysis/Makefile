@@ -16,6 +16,15 @@ test_user:
 test_post:
 	curl -X POST http://localhost:5001/post -H 'Content-Type: application/json' -d '{"cid":["bafyreiax3qmdxlcp2k33k522uecf5qunuj4vok5b2tsczpa4fspe6p5y7u"], "uri":["at://did:plc:6igmqrjdv7lvsgmp5h7wikvl/app.bsky.feed.post/3le2lxv4pes23"]}'
 
+install_dep:
+	curl -X POST http://localhost:8123/timeplusd/v1/python_packages \
+		-u proton:timeplus@t+ \
+		-d '{"packages": [{"name": "transformers"},{"name": "torch"}]}'
+
+list_deps:
+	curl http://localhost:8123/timeplusd/v1/python_packages \
+		-u proton:timeplus@t+ 
+
 
 docker: Dockerfile
 	docker buildx build \

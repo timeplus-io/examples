@@ -165,5 +165,33 @@ SELECT
 FROM
   top_5_reply_5m
 
+-- real-time keyword search
+WITH 'tariffs,trumptariffs,tradewar' AS key_words
+SELECT
+  record:commit:record:text AS text
+FROM
+  bluebird
+WHERE
+  (record:commit.collection = 'app.bsky.feed.post') 
+  AND array_exists(kw -> (position(lower(record:commit.record.text), lower(kw)) > 0), split_by_string(',', key_words)) 
+  -- AND (_tp_time > (now() - 1m))
+
+-- real-time sentimental analysis
+WITH '{{filter_key_words}}' AS key_words, scores AS
+  (
+    SELECT
+      _tp_time AS time, record:commit:record:text AS text, sentiment_analyzer(text) AS score, score:label AS label, cast(score:score, 'float') AS sentiment_score
+    FROM
+      bluebird
+    WHERE
+      (record:commit.collection = 'app.bsky.feed.post') AND array_exists(kw -> (position(lower(record:commit.record.text), lower(kw)) > 0), split_by_string(',', key_words)) AND (_tp_time > (now() - 1m))
+  )
+SELECT
+  window_start, label, avg(sentiment_score) AS avg_sentiment_score
+FROM
+  tumble(scores, time, 5s)
+GROUP BY
+  window_start, label
+
 
 

@@ -1,28 +1,23 @@
 services:
   timeplus:
-    image: timeplus/timeplus-enterprise:2.5.11
+    image: timeplus/timeplus-enterprise:2.8.1-rc.2
+    platform: linux/amd64
     environment:
-    - ENABLE_AUTHENTICATION=true
-    - TIMEPLUSD_ADMIN_PASSWORD=Password!
+      - HF_HOME=/root/.cache/huggingface
     ports:
       - "8000:8000"
       - "8463:8463"
-    healthcheck:
-      test: ["CMD", "curl", "http://localhost:3218/timeplusd/ping"]
-      interval: 2s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
+      - "8123:8123"
     volumes:
       - timeplus_data:/timeplus/data/
+      - hf-cache:/root/.cache/huggingface
 
   bluebird:
     image: node:latest
     entrypoint: >
-      npx @sdairs/bluebird start timeplus --token proton:Password! --endpoint http://timeplus:8000/default --stream bluebird
+      npx @sdairs/bluebird start timeplus --token proton:timeplus@t+ --endpoint http://timeplus:8000/default --stream bluebird
     depends_on:
-      timeplus:
-        condition: service_healthy
+      - timeplus
 
   udf:
     image: timeplus/bluesky:39a911d
@@ -31,12 +26,7 @@ services:
     environment:
     - BLUESKY_USER=${BLUESKY_USER}
     - BLUESKY_PASSWORD=${BLUESKY_PASSWORD}
-    healthcheck:
-      test: ["CMD", "curl", "http://localhost:5001/"]
-      interval: 2s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
+    profiles: [development]
 
   notebook:
     image: jupyter/scipy-notebook:latest
@@ -45,7 +35,10 @@ services:
       - 8888:8888
     volumes:
       - ./notebooks:/home/jovyan/work
+    profiles: [development]
 
 volumes:
   timeplus_data:
+    driver: local
+  hf-cache:
     driver: local
