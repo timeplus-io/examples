@@ -13,7 +13,7 @@ init:
 	pip install -r requirements.txt
 
 docker: Dockerfile
-	docker build  -t $(IMAGE_NAME) .
+	docker build  --platform linux/amd64 -t $(IMAGE_NAME) .
 
 run:
 	docker run -p 8000:8000 -e TIMEPLUS_APIKEY=$(TIMEPLUS_APIKEY) -e TIMEPLUS_SERVER_URL=$(TIMEPLUS_SERVER_URL) -e TIMEPLUS_WORKSPACE=$(TIMEPLUS_WORKSPACE) $(IMAGE_NAME)

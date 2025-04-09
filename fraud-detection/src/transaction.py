@@ -853,11 +853,14 @@ def run(target):
         # clean_timeplus()
         init_timeplus()
         print('initialize using timeplus')
+        
+    interval = float(os.getenv('SIM_INTERVAL', '0.1'))
+    batch = int(os.getenv('SIM_BATCH', '10'))
 
     sim = PaymentSimulator(number_of_account=100000,
                            number_of_m_account=10000,
-                           interval=0.1,
-                           batch=10,
+                           interval=interval,
+                           batch=batch,
                            fraud_rate=0.02,
                            target=target)
     sim.run()
