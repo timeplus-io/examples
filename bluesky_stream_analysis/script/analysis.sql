@@ -176,6 +176,18 @@ WHERE
   AND array_exists(kw -> (position(lower(record:commit.record.text), lower(kw)) > 0), split_by_string(',', key_words)) 
   -- AND (_tp_time > (now() - 1m))
 
+-- real-time sentimental
+
+WITH '{{filter_key_words}}' AS key_words
+SELECT
+  record:commit:record:text AS text, sentiment_analyzer(text) as score, score:lable as label, score:score as sentimental_score
+FROM
+  bluebird
+WHERE
+  (record:commit.collection = 'app.bsky.feed.post') 
+  AND array_exists(kw -> (position(lower(record:commit.record.text), lower(kw)) > 0), split_by_string(',', key_words)) 
+  and _tp_time > now()-1m
+
 -- real-time sentimental analysis
 WITH '{{filter_key_words}}' AS key_words, scores AS
   (

@@ -6,10 +6,10 @@
       "position": {
         "h": 4,
         "nextX": 6,
-        "nextY": 5,
+        "nextY": 9,
         "w": 6,
         "x": 0,
-        "y": 1
+        "y": 5
       },
       "viz_type": "chart",
       "viz_content": "WITH '{{filter_key_words}}' AS key_words\nSELECT\n  record:commit:record:text AS text\nFROM\n  bluebird\nWHERE\n  (record:commit.collection = 'app.bsky.feed.post') \n  AND array_exists(kw -> (position(lower(record:commit.record.text), lower(kw)) > 0), split_by_string(',', key_words)) \n  and _tp_time > now()-1m",
@@ -49,12 +49,12 @@
       "title": "Sentimental Score Trend",
       "description": "",
       "position": {
-        "x": 6,
-        "y": 1,
-        "w": 6,
         "h": 4,
         "nextX": 12,
-        "nextY": 5
+        "nextY": 5,
+        "w": 6,
+        "x": 6,
+        "y": 1
       },
       "viz_type": "chart",
       "viz_content": "WITH '{{filter_key_words}}' AS key_words, scores AS\n  (\n    SELECT\n      _tp_time AS time, record:commit:record:text AS text, sentiment_analyzer(text) AS score, score:label AS label, cast(score:score, 'float') AS sentiment_score\n    FROM\n      bluebird\n    WHERE\n      (record:commit.collection = 'app.bsky.feed.post') AND array_exists(kw -> (position(lower(record:commit.record.text), lower(kw)) > 0), split_by_string(',', key_words)) AND (_tp_time > (now() - 1m))\n  )\nSELECT\n  window_start, label, avg(sentiment_score) AS avg_sentiment_score\nFROM\n  tumble(scores, time, 5s)\nGROUP BY\n  window_start, label",
@@ -98,6 +98,29 @@
             "maxChar": 25
           },
           "yTitle": ""
+        }
+      }
+    },
+    {
+      "id": "f341fcdc-93ed-4e50-bcda-d11082b07444",
+      "title": "Latest Post with Sentimental Score",
+      "description": "",
+      "position": {
+        "h": 4,
+        "nextX": 6,
+        "nextY": 5,
+        "w": 6,
+        "x": 0,
+        "y": 1
+      },
+      "viz_type": "chart",
+      "viz_content": "WITH 'tariffs,trumptariffs,tradewar' AS key_words\nSELECT\n  record:commit:record:text AS text, sentiment_analyzer(text) as score, score:label as label, score:score as sentimental_score\nFROM\n  bluebird\nWHERE\n  (record:commit.collection = 'app.bsky.feed.post') \n  AND array_exists(kw -> (position(lower(record:commit.record.text), lower(kw)) > 0), split_by_string(',', key_words)) \n  and _tp_time > now()-1m",
+      "viz_config": {
+        "chartType": "md",
+        "config": {
+          "content": "Post\n--\n{{text}}\n\nSentiment\n--\n{{label}} : {{sentimental_score}}",
+          "updateKey": "",
+          "updateMode": "all"
         }
       }
     }
