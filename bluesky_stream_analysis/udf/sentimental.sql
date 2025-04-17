@@ -2,6 +2,7 @@
 CREATE OR REPLACE FUNCTION sentiment_analyzer(input string) RETURNS string LANGUAGE PYTHON AS 
 $$
 import json
+import traceback
 from transformers import pipeline
 
 pipe = pipeline("text-classification", 
@@ -23,6 +24,8 @@ def sentiment_analyzer(input):
     return results
 
 $$;
+
+
 
 CREATE OR REPLACE FUNCTION sentiment_analyzer(input string) RETURNS string LANGUAGE PYTHON AS 
 $$
