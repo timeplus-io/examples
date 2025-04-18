@@ -1,0 +1,36 @@
+services:
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.9.0-aitest2
+    ports:
+      - 8000:8000
+      - 8463:8463
+      - 8123:8123
+    environment:
+      - TIMEPLUS_HOST=${TIMEPLUS_HOST}
+      - TIMEPLUS_USER=${TIMEPLUS_USER}
+      - TIMEPLUS_PASSWORD=${TIMEPLUS_PASSWORD}
+    volumes:
+      - timeplus_data:/timeplus/data/
+
+  detector:
+    image: timeplus/violence-detector:8666898
+    ports:
+      - 5001:5001
+    environment:
+      - TIMEPLUS_HOST=timeplus
+      - TIMEPLUS_USER=${TIMEPLUS_USER}
+      - TIMEPLUS_PASSWORD=${TIMEPLUS_PASSWORD}
+      - INPUT_STREAM=${INPUT_STREAM}
+      - SKIP_FRAMES=${SKIP_FRAMES}
+      - DISPLAY_OUTPUT=false
+      - HF_HOME=/root/.cache/huggingface
+    volumes:
+      - hf-cache:/root/.cache/huggingface
+      - ./samples/:/timeplus/samples/
+      
+
+volumes:
+  timeplus_data:
+    driver: local
+  hf-cache:
+    driver: local

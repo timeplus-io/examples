@@ -1,0 +1,13 @@
+ultralytics
+opencv-python
+numpy
+torch
+torchvision
+torchaudio
+ffmpeg-python
+streamlink
+yt-dlp
+proton-driver
+transformers==4.50.3
+fastapi
+uvicorn
