@@ -63,7 +63,20 @@ class VideoProcessor:
         self.running = False
         self.pipeline = None
         
-        self.create_log_stream()
+        self.init_timeplus()
+        
+    def init_timeplus(self):
+        while True:
+            try:
+                self.client.execute(
+                    f"""SELECT 1"""
+                )
+                break
+            except Exception as e:
+                logger.error(f"Failed to connect to Timeplus: {e}")
+                time.sleep(3)
+                
+        self.create_log_stream     
         
     def create_log_stream(self):
         """Create Timeplus stream if it doesn't exist"""

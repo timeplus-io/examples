@@ -20,7 +20,7 @@ services:
       - ROBOFLOW_API_KEY=${ROBOFLOW_API_KEY}
       - ROBOFLOW_USERNAME=${ROBOFLOW_USERNAME}
       - ROBOFLOW_WORKFLOW=${ROBOFLOW_WORKFLOW}
-      - INPUT_VIDEO=/timeplus/samples/test.mp4
+      - INPUT_VIDEO=/timeplus/samples/BEST_UPCOMING_MOVIES_2025(Trailers).mp4
 
     volumes:
       - hf-cache:/root/.cache/huggingface

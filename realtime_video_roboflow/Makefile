@@ -7,6 +7,16 @@ FULLNAME_LATEST=$(DOCKER_ID_USER)/$(BIN_NAME):latest
 PWD = $(shell pwd)
 
 
+start:
+	docker compose up -d
+
+stop:
+	docker compose down
+
+create_dashboard:
+	curl -X POST --user proton:timeplus@t+ -H "Content-Type: application/json" -d @./dashboard/payload.json http://localhost:8000/default/api/v1beta2/dashboards
+
+
 run_timeplus:
 	docker run -d \
 		--name timeplus \
@@ -19,6 +29,7 @@ run_timeplus:
 
 run_inference:
 	python server.py
+
 
 dockerx: Dockerfile
 	docker buildx build \
