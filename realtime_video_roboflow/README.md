@@ -23,7 +23,7 @@ The system forms an end-to-end pipeline from video input through ML inference to
 - Roboflow inference package
 - Proton driver for Timeplus stream data ingest
 
-## Installation
+## Development
 
 1. Install the required dependencies:
 
@@ -62,6 +62,10 @@ export SERVER_PORT="5001"
 ```
 
 ## Usage
+
+Set requirement environment and input stream using environment variables. Run with docker compose `make start` and then create the dashboard use `create_dashboard`, login to timeplust from `localhost:8000` to view the dashboard.
+
+Or you can run the server seperatedly.
 
 Run timeplus with docker
 ```bash
