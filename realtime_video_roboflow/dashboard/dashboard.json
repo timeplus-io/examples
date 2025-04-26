@@ -67,7 +67,7 @@
       "y": 5
     },
     "viz_type": "chart",
-    "viz_content": "WITH vio AS\n  (\n    SELECT\n      _tp_time, raw:model_violence_predictions:top AS flag, if(flag = 'violence', cast(raw:model_violence_predictions:confidence, 'float64'), 0) AS vscore\n    FROM\n      video_stream_log\n  )\nSELECT\n  window_start, count(*) AS count, sum(vscore) AS svscore, svscore / count AS violence_rate\nFROM\n  hop(vio, 1s, 5s)\nGROUP BY\n  window_start",
+    "viz_content": "WITH vio AS\n  (\n    SELECT\n      _tp_time, raw:model_violence_predictions:top AS flag, if(flag = 'violence', cast(raw:model_violence_predictions:confidence, 'float64'), 0) AS vscore\n    FROM\n      video_stream_log\n    where _tp_time > now()-1h\n  )\nSELECT\n  window_start, count(*) AS count, sum(vscore) AS svscore, svscore / count AS violence_rate\nFROM\n  hop(vio, 1s, 5s)\nGROUP BY\n  window_start",
     "viz_config": {
       "chartType": "line",
       "config": {
@@ -151,9 +151,9 @@
     "viz_config": {
       "chartType": "md",
       "config": {
-        "updateMode": "all",
+        "content": "<iframe src=\"http://localhost:5001/static/video.html?id={{id}}\" width=\"640\" height=\"480\" frameborder=\"0\"></iframe>",
         "updateKey": "",
-        "content": "<iframe src=\"http://localhost:5001/static/video.html?id={{id}}\" width=\"640\" height=\"480\" frameborder=\"0\"></iframe>"
+        "updateMode": "all"
       }
     }
   }

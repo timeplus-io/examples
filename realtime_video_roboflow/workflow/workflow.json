@@ -1,0 +1,55 @@
+{
+    "version": "1.0",
+    "inputs": [
+      {
+        "type": "InferenceImage",
+        "name": "image"
+      }
+    ],
+    "steps": [
+      {
+        "type": "roboflow_core/roboflow_object_detection_model@v2",
+        "name": "model_detection",
+        "images": "$inputs.image",
+        "model_id": "yolov11n-640"
+      },
+      {
+        "type": "roboflow_core/roboflow_classification_model@v2",
+        "name": "model_violence",
+        "images": "$inputs.image",
+        "model_id": "detected-images-violence/1"
+      },
+      {
+        "type": "roboflow_core/bounding_box_visualization@v1",
+        "name": "bounding_box_visualization",
+        "image": "$inputs.image",
+        "predictions": "$steps.model_detection.predictions"
+      },
+      {
+        "type": "roboflow_core/label_visualization@v1",
+        "name": "label_visualization",
+        "image": "$steps.bounding_box_visualization.image",
+        "predictions": "$steps.model_detection.predictions"
+      }
+    ],
+    "outputs": [
+      {
+        "type": "JsonField",
+        "name": "model_detection_prediction",
+        "coordinates_system": "own",
+        "selector": "$steps.model_detection.predictions"
+      },
+      {
+        "type": "JsonField",
+        "name": "visualization",
+        "coordinates_system": "own",
+        "selector": "$steps.label_visualization.image"
+      },
+      {
+        "type": "JsonField",
+        "name": "model_violence_predictions",
+        "coordinates_system": "own",
+        "selector": "$steps.model_violence.predictions"
+      }
+    ]
+  }
