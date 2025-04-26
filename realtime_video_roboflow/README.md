@@ -7,6 +7,8 @@ This project creates a video analytic application that:
 
 The system forms an end-to-end pipeline from video input through ML inference to real-time analytics dashboards.
 
+![alt text](image.png)
+
 ## Features
 
 - **Roboflow Integration**: Leverages Roboflow's powerful inference pipeline for object detection
