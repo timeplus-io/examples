@@ -1,0 +1,37 @@
+services:
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.9.0-aitest2
+    platform: linux/amd64
+    ports:
+      - 8000:8000
+      - 8463:8463
+      - 8123:8123
+    volumes:
+      - timeplus_data:/timeplus/data/
+
+  detector:
+    image: timeplus/violence-detector-roboflow:de7d7a4
+    ports:
+      - 5001:5001
+    environment:
+      - TIMEPLUS_HOST=timeplus
+      - TIMEPLUS_USER=${TIMEPLUS_USER}
+      - TIMEPLUS_PASSWORD=${TIMEPLUS_PASSWORD}
+      - ROBOFLOW_API_KEY=${ROBOFLOW_API_KEY}
+      - ROBOFLOW_USERNAME=${ROBOFLOW_USERNAME}
+      - ROBOFLOW_WORKFLOW=${ROBOFLOW_WORKFLOW}
+      - INPUT_VIDEO=/timeplus/samples/BEST_UPCOMING_MOVIES_2025(Trailers).mp4
+    volumes:
+      - hf-cache:/root/.cache/huggingface
+      - ./samples/:/timeplus/samples/
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+volumes:
+  timeplus_data:
+    driver: local
+  hf-cache:
+    driver: local
