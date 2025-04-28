@@ -10,7 +10,7 @@ services:
       - timeplus_data:/timeplus/data/
 
   detector:
-    image: timeplus/violence-detector-roboflow:f15946c
+    image: timeplus/violence-detector-roboflow:de7d7a4
     ports:
       - 5001:5001
     environment:
