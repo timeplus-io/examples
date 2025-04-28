@@ -76,7 +76,7 @@ class VideoProcessor:
                 logger.error(f"Failed to connect to Timeplus: {e}")
                 time.sleep(3)
                 
-        self.create_log_stream     
+        self.create_log_stream()    
         
     def create_log_stream(self):
         """Create Timeplus stream if it doesn't exist"""
