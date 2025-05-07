@@ -1,0 +1,48 @@
+# Vector configuration for collecting NVIDIA GPU metrics
+
+[api]
+enabled = true
+address = "0.0.0.0:8686"
+
+# Source configuration for scraping Prometheus metrics from DCGM exporter
+[sources.dcgm_metrics]
+type = "prometheus_scrape"
+endpoints = ["http://dcgm-exporter:9400/metrics"]
+scrape_interval_secs = 15
+
+# Transform configuration to process the metrics 
+[transforms.gpu_metrics_processor]
+type = "remap"
+inputs = ["dcgm_metrics"]
+source = '''
+# Handle type checking properly
+if exists(.metric_name) {
+  # Convert to string with fallback
+  .metric_name = to_string(.metric_name) ?? ""
+  
+  # Now we can safely check if it starts with DCGM
+  if !starts_with(.metric_name, "DCGM") {
+    # If not a DCGM metric, remove it by returning null
+    null
+  } else {
+    # Add a timestamp if missing
+    if !exists(.timestamp) {
+      .timestamp = now()
+    }
+    # Keep the event by returning it
+    .
+  }
+} else {
+  # If no metric_name, add a type for debugging
+  .metric_type = "unknown"
+  .
+}
+'''
+
+# Sink configuration to send metrics to Redpanda/Kafka
+[sinks.kafka_output]
+type = "kafka"
+inputs = ["gpu_metrics_processor"]
+bootstrap_servers = "redpanda:9092"
+topic = "gpu-metrics"
+encoding.codec = "json"

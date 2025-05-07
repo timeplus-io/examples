@@ -1,0 +1,93 @@
+services:
+  # Ollama service with GPU support
+  ollama:
+    container_name: ollama
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all  # Use all available GPUs
+              capabilities: [gpu]
+    restart: unless-stopped
+    
+  openwebui:
+    container_name: openwebui
+    image: ghcr.io/open-webui/open-webui:main
+    ports:
+      - "3000:8080"
+    environment:
+      - OLLAMA_API_BASE_URL=http://ollama:11434
+    volumes:
+      - openwebui-data:/app/backend/data
+    depends_on:
+      - ollama
+    restart: unless-stopped
+  
+  redpanda:
+    image: redpandadata/redpanda:v23.3.4
+    container_name: redpanda
+    command:
+      - redpanda start
+      - --smp 1
+      - --memory 1G
+      - --reserve-memory 0M
+      - --overprovisioned
+      - --node-id 0
+      - --check=false
+      - --kafka-addr PLAINTEXT://0.0.0.0:9092,OUTSIDE://0.0.0.0:19092
+      - --advertise-kafka-addr PLAINTEXT://redpanda:9092,OUTSIDE://localhost:19092
+      - --schema-registry-addr 0.0.0.0:8081
+      - --pandaproxy-addr 0.0.0.0:8082
+      - --advertise-pandaproxy-addr localhost:8082
+    ports:
+      - "19092:19092"
+      - "9644:9644"  # Admin API
+      - "8081:8081"  # Schema Registry
+    volumes:
+      - redpanda-data:/var/lib/redpanda
+    environment:
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+
+  dcgm-exporter:
+    image: nvcr.io/nvidia/k8s/dcgm-exporter:latest
+    runtime: nvidia
+    devices:
+      - /dev/nvidiactl:/dev/nvidiactl
+      - /dev/nvidia0:/dev/nvidia0  # Add more for multiple GPUs
+    ports:
+      - "9400:9400"
+    restart: always
+
+  # Vector to collect and forward metrics
+  vector:
+    image: timberio/vector:latest-alpine
+    volumes:
+      - ./vector.toml:/etc/vector/vector.toml:ro
+    environment:
+      - VECTOR_CONFIG=/etc/vector/vector.toml
+    ports:
+      - "8686:8686"  # Vector API server
+    depends_on:
+      - dcgm-exporter
+    restart: always
+
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.9.0-aitest
+    ports:
+      - 8000:8000
+    volumes:
+      - timeplus-data:/timeplus/data/
+
+volumes:
+  ollama-data:
+  openwebui-data:
+  redpanda-data:
+  timeplus-data:
