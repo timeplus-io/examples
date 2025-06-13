@@ -1,0 +1,271 @@
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #110f14;
+    min-height: 100vh;
+    color: #EFEEEF;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 20px;
+}
+
+.chess-board-container {
+    background: #242227;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.board-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.rank-labels {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 400px;
+    padding: 0 5px;
+}
+
+.rank-label {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #4D4B50;
+    font-size: 16px;
+}
+
+.chess-board-with-files {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.chess-board {
+    width: 400px;
+    height: 400px;
+    border: 3px solid #4D4B50;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+}
+
+.file-labels {
+    display: flex;
+    width: 400px;
+    margin-top: 5px;
+}
+
+.file-label {
+    width: 50px;
+    text-align: center;
+    font-weight: bold;
+    color: #4D4B50;
+    font-size: 16px;
+}
+
+.square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.square.light {
+    background-color: #4D4B50;
+}
+
+.square.dark {
+    background-color: #737175;
+}
+
+.piece.white {
+    color: white;
+}
+
+.piece.black {
+    color: black;
+}
+
+.square.highlight {
+    background-color: #908E93 !important;
+    border: 3px solid #AEACB0;
+    box-shadow: inset 0 0 10px rgba(255,255,0,0.5);
+}
+
+.game-info {
+    background: #242227;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    height: fit-content;
+}
+
+.current-move {
+    background: #242227;
+    color: #efeeef;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    font-family: monospace;
+}
+
+.current-move.error {
+    background: #43101C;
+    border: 2px solid #D12D50;
+    box-shadow: 0 0 10px rgba(215, 58, 73, 0.3);
+}
+
+.current-error {
+    display : none;
+    background: #242227;
+    color: red;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    font-family: monospace;
+}
+
+.current-error.show {
+    display : block;
+}
+
+
+.error-text {
+    color: #FF4A71;
+    font-weight: bold;
+    background: rgba(255, 107, 107, 0.1);
+    padding: 5px 8px;
+    border-radius: 5px;
+    border-left: 4px solid #FF4A71;
+    margin-top: 8px;
+    display: inline-block;
+}
+
+.moves-container {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #2F2D32;
+    border-radius: 10px;
+    padding: 10px;
+    background: #242227;
+}
+
+.move-entry {
+    padding: 8px;
+    color: #efeeef;
+    margin: 5px 0;
+    border-radius: 5px;
+    background: #242227;
+    border-left: 4px solid #737175;
+    animation: slideIn 0.3s ease-out;
+}
+
+.move-entry.white {
+    border-left-color: #908E93;
+}
+
+.move-entry.black {
+    border-left-color: #4D4B50;
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0; 
+        transform: translateX(-20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0); 
+    }
+}
+
+h1 {
+    text-align: center;
+    color: #EFEEEF;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 30px;
+    font-size: 2.5em;
+}
+
+h3 {
+    margin-top: 0;
+    color: #EFEEEF;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.board-text {
+    font-family: 'Menlo', 'Noto Sans Mono', 'SF Mono', monospace;
+    font-size: 14px;
+    line-height: 1.1;
+    white-space: pre;
+    background: #19171D;
+    color: #AEACB0;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 15px 0 0 0;
+    overflow-x: auto;
+    border: 1px solid #2F2D32;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    font-weight: 400;
+    letter-spacing: 0px;
+    font-variant-ligatures: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-feature-settings: "liga" 0;
+    font-feature-settings: "liga" 0;
+    width: 100%;
+    box-sizing: border-box;
+    display: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .chess-board {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .file-labels {
+        width: 300px;
+    }
+    
+    .file-label {
+        width: 37.5px;
+    }
+    
+    .rank-labels {
+        height: 300px;
+    }
+    
+    .rank-label {
+        height: 37.5px;
+    }
+    
+    .square {
+        font-size: 24px;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+}

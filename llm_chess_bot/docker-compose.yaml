@@ -1,0 +1,29 @@
+services:
+
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.9.0-rc.3
+    platform: linux/amd64
+    ports:
+      - 8000:8000
+      - 8463:8463
+      - 8123:8123
+      - 3218:3218
+    environment:
+      - ENABLE_DATA_PREALLOCATE=false
+    volumes:
+      - timeplus_data:/timeplus/data/
+
+  chess:
+    image: timeplus/autogen-agent-chess:2ca8432
+    restart: always
+    ports:
+      - 5001:5001
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL}
+      - OPENAI_BASE_URL=${OPENAI_BASE_URL}
+      - TIMEPLUS_HOST=timeplus
+
+volumes:
+  timeplus_data:
+    driver: local

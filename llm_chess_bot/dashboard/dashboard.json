@@ -1,0 +1,312 @@
+[
+  {
+    "id": "e4e6b7a8-66e4-436a-abd9-b4d0b19b139a",
+    "title": "Message Stats per Type",
+    "description": "",
+    "position": {
+      "h": 4,
+      "nextX": 6,
+      "nextY": 13,
+      "w": 6,
+      "x": 0,
+      "y": 9
+    },
+    "viz_type": "chart",
+    "viz_content": "with extracted_agent_communication as (\nSELECT\n  _value:message_type AS message_type, \n  _value:message_id AS id, \n  _value:sender AS sender, \n  _value:recipient AS recipient,\n  json_value(json_value(_value, '$.`message_payload`'), '$.`_data`') AS message_payload_data\nFROM\n  {{channel}}\nwhere _tp_time > earliest_ts()\n)\nselect message_type, count(*) from extracted_agent_communication group by message_type",
+    "viz_config": {
+      "chartType": "column",
+      "config": {
+        "color": "",
+        "colors": [
+          "#ED64A6",
+          "#F0BE3E",
+          "#DA4B36",
+          "#9A1563",
+          "#FF4A71",
+          "#D12D50",
+          "#8934D9",
+          "#D53F8C",
+          "#F7775A",
+          "#8934D9"
+        ],
+        "dataLabel": true,
+        "fractionDigits": 2,
+        "gridlines": true,
+        "groupType": "stack",
+        "legend": false,
+        "unit": {
+          "position": "left",
+          "value": ""
+        },
+        "updateKey": "message_type",
+        "updateMode": "key",
+        "xAxis": "message_type",
+        "xFormat": "HH:mm",
+        "xTickLabel": {
+          "maxChar": 10
+        },
+        "xTitle": "",
+        "yAxis": "count()",
+        "yTickLabel": {
+          "maxChar": 25
+        },
+        "yTitle": ""
+      }
+    }
+  },
+  {
+    "id": "95135660-8b77-4c2b-a722-8b1622e1deaa",
+    "title": "Chess Board",
+    "description": "",
+    "position": {
+      "h": 8,
+      "nextX": 12,
+      "nextY": 8,
+      "w": 12,
+      "x": 0,
+      "y": 0
+    },
+    "viz_type": "chart",
+    "viz_content": "select rand() as id",
+    "viz_config": {
+      "chartType": "md",
+      "config": {
+        "content": "<iframe src=\"http://localhost:5001/static/index.html?id={{id}}\\\" width=\"1200\" height=\"800\" frameborder=\"0\"></iframe>",
+        "updateKey": "",
+        "updateMode": "all"
+      }
+    }
+  },
+  {
+    "id": "7de0bd44-5c01-4c61-9b64-e1d91bbcf766",
+    "title": "new panel",
+    "description": "",
+    "position": {
+      "h": 1,
+      "nextX": 7,
+      "nextY": 9,
+      "w": 3,
+      "x": 4,
+      "y": 8
+    },
+    "viz_type": "control",
+    "viz_content": "SELECT  name FROM system.tables  WHERE name LIKE 'autogen%' ORDER BY metadata_modification_time DESC",
+    "viz_config": {
+      "chartType": "selector",
+      "defaultValue": "",
+      "inlineValues": "",
+      "label": "Agent Channel",
+      "target": "channel"
+    }
+  },
+  {
+    "id": "0098a425-9d49-4948-86f1-141d0837f16d",
+    "title": "Hullucination - Move Twice for the Same Player",
+    "description": "",
+    "position": {
+      "h": 4,
+      "nextX": 6,
+      "nextY": 17,
+      "w": 6,
+      "x": 0,
+      "y": 13
+    },
+    "viz_type": "chart",
+    "viz_content": "WITH messages AS\n  (\n    SELECT\n      _tp_time AS time, _value:message_type AS message_type, _value:message_id AS message_id, _value:sender AS sender, _value:message_payload AS message_payload, _value:recipient AS recipient\n    FROM\n      {{channel}}\n    WHERE\n      _tp_time > earliest_ts()\n  ), try_moves AS\n  (\n    SELECT\n      time, sender\n    FROM\n      messages\n    WHERE\n      (message_type = 'send') AND (json_value(message_payload, '$.`_class`') = 'FunctionCall') AND (json_value(json_value(message_payload, '$.`_data`'), '$.`name`') = 'get_legal_moves')\n  )\nSELECT\n  time, sender as player, lag(sender) as previous_player\nFROM\n  try_moves\nwhere player = previous_player",
+    "viz_config": {
+      "chartType": "table",
+      "config": {
+        "rowCount": 5,
+        "tableStyles": {
+          "player": {
+            "conditions": [],
+            "decreaseColor": "red",
+            "highlightRow": false,
+            "increaseColor": "green",
+            "miniChartType": "",
+            "name": "",
+            "show": true,
+            "trend": false,
+            "width": 200
+          },
+          "previous_player": {
+            "conditions": [],
+            "decreaseColor": "red",
+            "highlightRow": false,
+            "increaseColor": "green",
+            "miniChartType": "",
+            "name": "",
+            "show": true,
+            "trend": false,
+            "width": 200
+          },
+          "time": {
+            "conditions": [],
+            "decreaseColor": "red",
+            "highlightRow": false,
+            "increaseColor": "green",
+            "miniChartType": "",
+            "name": "",
+            "show": true,
+            "trend": false,
+            "width": 210
+          }
+        },
+        "tableWrap": false,
+        "updateKey": "",
+        "updateMode": "all"
+      }
+    }
+  },
+  {
+    "id": "0628ad6e-2bbc-4364-a15d-fac9ffdf19d9",
+    "title": "Hullucination - Illegal Move",
+    "description": "",
+    "position": {
+      "h": 4,
+      "nextX": 12,
+      "nextY": 17,
+      "w": 6,
+      "x": 6,
+      "y": 13
+    },
+    "viz_type": "chart",
+    "viz_content": "WITH messages AS\n  (\n    SELECT\n      _tp_time AS time, _value:message_type AS message_type, _value:message_id AS message_id, _value:sender AS sender, _value:message_payload AS message_payload, _value:recipient AS recipient\n    FROM\n      {{channel}}\n    WHERE\n      _tp_time > earliest_ts()\n  ), function_calls AS\n  (\n    SELECT\n      time, sender, message_payload, message_type\n    FROM\n      messages\n    WHERE\n      message_type in ('send', 'response') \n  ), consecutive_calls AS\n  (\n    SELECT\n      time, sender, lag(sender) as previous_sender, message_payload, lag(message_payload) AS previous_payload, message_type\n    FROM\n      function_calls\n  )\nSELECT\n  time, sender, previous_sender, message_payload:_data:arguments:move as move, previous_payload:_data:content as legal_moves, position(legal_moves, move) > 0 as legal\nFROM\n  consecutive_calls\nWHERE\n  json_value(json_value(message_payload, '$.`_data`'), '$.`name`') = 'make_move' and message_type = 'send' and previous_payload:_data:name = 'get_legal_moves' and not legal",
+    "viz_config": {
+      "chartType": "table",
+      "config": {
+        "rowCount": 5,
+        "tableStyles": {
+          "legal": {
+            "conditions": [],
+            "decreaseColor": "red",
+            "highlightRow": false,
+            "increaseColor": "green",
+            "miniChartType": "",
+            "name": "",
+            "show": true,
+            "trend": false,
+            "width": 200
+          },
+          "legal_moves": {
+            "conditions": [],
+            "decreaseColor": "red",
+            "highlightRow": false,
+            "increaseColor": "green",
+            "miniChartType": "",
+            "name": "",
+            "show": true,
+            "trend": false,
+            "width": 200
+          },
+          "move": {
+            "conditions": [],
+            "decreaseColor": "red",
+            "highlightRow": false,
+            "increaseColor": "green",
+            "miniChartType": "",
+            "name": "",
+            "show": true,
+            "trend": false,
+            "width": 200
+          },
+          "previous_sender": {
+            "conditions": [],
+            "decreaseColor": "red",
+            "highlightRow": false,
+            "increaseColor": "green",
+            "miniChartType": "",
+            "name": "",
+            "show": true,
+            "trend": false,
+            "width": 200
+          },
+          "sender": {
+            "conditions": [],
+            "decreaseColor": "red",
+            "highlightRow": false,
+            "increaseColor": "green",
+            "miniChartType": "",
+            "name": "",
+            "show": true,
+            "trend": false,
+            "width": 200
+          },
+          "time": {
+            "conditions": [],
+            "decreaseColor": "red",
+            "highlightRow": false,
+            "increaseColor": "green",
+            "miniChartType": "",
+            "name": "",
+            "show": true,
+            "trend": false,
+            "width": 210
+          }
+        },
+        "tableWrap": false,
+        "updateKey": "",
+        "updateMode": "all"
+      }
+    }
+  },
+  {
+    "id": "fc491659-c9a6-49a4-be65-82a85dc6aeed",
+    "title": "Thinking and Moves",
+    "description": "",
+    "position": {
+      "h": 4,
+      "nextX": 12,
+      "nextY": 13,
+      "w": 6,
+      "x": 6,
+      "y": 9
+    },
+    "viz_type": "chart",
+    "viz_content": "WITH messages AS\n  (\n    SELECT\n      _tp_time AS time, _value:message_type AS message_type, _value:message_id AS message_id, _value:sender AS sender, _value:message_payload AS message_payload, _value:recipient AS recipient\n    FROM\n      {{channel}}\n    WHERE\n      _tp_time > earliest_ts()\n  )\n    SELECT\n      sender, json_value(json_value(json_value(message_payload, '$.`_data`'), '$.`arguments`'), '$.`thinking`') AS thinking, json_value(json_value(json_value(message_payload, '$.`_data`'), '$.`arguments`'), '$.`move`') AS move\n    FROM\n      messages\n    WHERE\n      (message_type = 'send') AND (json_value(message_payload, '$.`_class`') = 'FunctionCall') AND (json_value(json_value(message_payload, '$.`_data`'), '$.`name`') = 'make_move')\n  \n",
+    "viz_config": {
+      "chartType": "table",
+      "config": {
+        "rowCount": 5,
+        "tableStyles": {
+          "move": {
+            "conditions": [],
+            "decreaseColor": "red",
+            "highlightRow": false,
+            "increaseColor": "green",
+            "miniChartType": "",
+            "name": "",
+            "show": true,
+            "trend": false,
+            "width": 200
+          },
+          "sender": {
+            "conditions": [],
+            "decreaseColor": "red",
+            "highlightRow": false,
+            "increaseColor": "green",
+            "miniChartType": "",
+            "name": "",
+            "show": true,
+            "trend": false,
+            "width": 200
+          },
+          "thinking": {
+            "conditions": [],
+            "decreaseColor": "red",
+            "highlightRow": false,
+            "increaseColor": "green",
+            "miniChartType": "",
+            "name": "",
+            "show": true,
+            "trend": false,
+            "width": 200
+          }
+        },
+        "tableWrap": false,
+        "updateKey": "",
+        "updateMode": "all"
+      }
+    }
+  }
+]

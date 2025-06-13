@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Chess Game</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>🤖 CheckBot: An LLM Chess Battle🤖</h1>
+    
+    <div class="container">
+        <div class="chess-board-container">
+            <div class="board-wrapper">
+                <div class="rank-labels">
+                    <div class="rank-label">8</div>
+                    <div class="rank-label">7</div>
+                    <div class="rank-label">6</div>
+                    <div class="rank-label">5</div>
+                    <div class="rank-label">4</div>
+                    <div class="rank-label">3</div>
+                    <div class="rank-label">2</div>
+                    <div class="rank-label">1</div>
+                </div>
+                <div class="chess-board-with-files">
+                    <div class="chess-board" id="chessBoard"></div>
+                    <div class="file-labels">
+                        <div class="file-label">a</div>
+                        <div class="file-label">b</div>
+                        <div class="file-label">c</div>
+                        <div class="file-label">d</div>
+                        <div class="file-label">e</div>
+                        <div class="file-label">f</div>
+                        <div class="file-label">g</div>
+                        <div class="file-label">h</div>
+                    </div>
+                </div>
+            </div>
+            <div class="board-text" id="boardText">Waiting for game to start...</div>
+        </div>
+        
+        <div class="game-info">
+            <h3>Current Move</h3>
+            <div class="current-move" id="currentMove">
+                Game starting...
+            </div>
+
+            <div class="current-error" id="currentError">
+            </div>
+            
+            <h3>Move History</h3>
+            <div class="moves-container" id="movesContainer">
+                <div style="text-align: center; color: #666; font-style: italic;">
+                    Waiting for first move...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/chess.js"></script>
+</body>
+</html>
