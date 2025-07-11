@@ -1,6 +1,6 @@
 services:
   timeplus:
-    image: timeplus/timeplus-enterprise:2.9.0-ai-dev-1
+    image: timeplus/timeplus-enterprise:2.9.0-rc.7
     platform: linux/amd64
     environment:
       - HF_HOME=/root/.cache/huggingface
