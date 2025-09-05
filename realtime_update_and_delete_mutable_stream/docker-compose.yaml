@@ -1,0 +1,19 @@
+services:
+  timeplus:
+    image: timeplus/timeplus-enterprise:2.8.2
+    container_name: timeplus
+    platform: linux/amd64
+    environment:
+    - ENABLE_DATA_PREALLOCATE=false
+    ports:
+      - "8000:8000"
+      - "3218:3218"
+      - "8463:8463"
+      - "8123:8123"
+    volumes:
+      - timeplus_data:/timeplus/data/
+
+volumes:
+  timeplus_data:
+    driver: local
+  
