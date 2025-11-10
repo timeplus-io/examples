@@ -1,0 +1,39 @@
+services:
+  timeplus:
+    image: timeplus/timeplus-enterprise:3.0.2
+    ports:
+      - "8000:8000"
+      - "8463:8463"
+      - "8123:8123"
+    volumes:
+      - timeplus-data:/timeplus/data/
+      - ./grok/grok-patterns:/etc/timeplusd-server/grok-patterns
+
+  redpanda:
+    image: redpandadata/redpanda:v23.3.4
+    container_name: kafka
+    command:
+      - redpanda start
+      - --smp 1
+      - --memory 1G
+      - --reserve-memory 0M
+      - --overprovisioned
+      - --node-id 0
+      - --check=false
+      - --kafka-addr PLAINTEXT://0.0.0.0:9092,OUTSIDE://0.0.0.0:19092
+      - --advertise-kafka-addr PLAINTEXT://redpanda:9092,OUTSIDE://localhost:19092
+      - --schema-registry-addr 0.0.0.0:8081
+      - --pandaproxy-addr 0.0.0.0:8082
+      - --advertise-pandaproxy-addr localhost:8082
+    ports:
+      - "19092:19092"
+      - "9644:9644"  # Admin API
+      - "8081:8081"  # Schema Registry
+    volumes:
+      - redpanda-data:/var/lib/redpanda
+    environment:
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+
+volumes:
+  redpanda-data:
+  timeplus-data:
