@@ -214,18 +214,11 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
     -- Duration calculation helpers
     duration_seconds uint16 DEFAULT (rand(81) % 3600),
     
-    -- Duration string (format: H:MM:SS or MM:SS)
-    duration string DEFAULT multi_if(
-        duration_seconds >= 3600, 
-        concat(
-            to_string(duration_seconds / 3600), ':',
-            lpad(to_string((duration_seconds % 3600) / 60), 2, '0'), ':',
-            lpad(to_string(duration_seconds % 60), 2, '0')
-        ),
-        concat(
-            to_string(duration_seconds / 60), ':',
-            lpad(to_string(duration_seconds % 60), 2, '0')
-        )
+    -- Duration string (format: hh:mm:ss with leading zeros)
+    duration string DEFAULT concat(
+        lpad(to_string(floor(duration_seconds / 3600)), 2, '0'), ':',
+        lpad(to_string(floor((duration_seconds % 3600) / 60)), 2, '0'), ':',
+        lpad(to_string(duration_seconds % 60), 2, '0')
     ),
     
     -- TCP flags
