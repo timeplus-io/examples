@@ -173,6 +173,26 @@ where m['event_id'] in ['302013', '302014', '302015', '302016', '302020', '30202
                          '305011', '305012', '106023', '106015', '106001',
                          '313001', '313004', '313005', '400013', '113004', '113015', '713172'];
 
+CREATE VIEW IF NOT EXISTS cisco_o11y.v_asa_logs_parsed_with_predefined_patterns
+AS
+select
+    -- Parse syslog header
+    grok(message,'<%{POSINT:priority}>%{SYSLOGTIMESTAMP:timestamp} %{HOSTNAME:device} %%{WORD:facility}-%{INT:severity}-%{INT:event_id}: %{GREEDYDATA:asa_message}') as m,
+    
+    -- Parse event-specific fields using predefined pattern names
+    multi_if(
+        m['event_id'] in ('302013', '302014', '302015', '302016'),
+        grok(m['asa_message'], '%{CISCOFW302013_302014_302015_302016}'),
+
+        m['event_id'] = '106023',
+        grok(m['asa_message'], '%{CISCOFW106023}'),
+        
+        map_cast(['event_id'], [m['event_id']])
+    ) as m1
+    
+from cisco_o11y.asa_logs_stream
+where m['event_id'] in ['302013', '302014', '302015', '302016', '106023'];
+
 CREATE EXTERNAL STREAM IF NOT EXISTS cisco_o11y.parsed_asa_logs_stream_timeplus (
     raw string
 )
