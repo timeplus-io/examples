@@ -34,6 +34,19 @@ services:
     environment:
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
 
+  logstash:
+    image: docker.elastic.co/logstash/logstash:8.11.1
+    container_name: logstash
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+    environment:
+      - "LS_JAVA_OPTS=-Xmx512m -Xms512m"
+    depends_on:
+      - redpanda
+    ports:
+      - "9600:9600"  # Logstash monitoring API
+
 volumes:
   redpanda-data:
   timeplus-data:

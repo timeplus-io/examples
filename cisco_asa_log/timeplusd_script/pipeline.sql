@@ -8,6 +8,9 @@ SETTINGS type = 'kafka', brokers = 'redpanda:9092', topic = 'cisco_asa_logs', da
 
 -- Cisco ASA Log Grok Patterns - Corrected for Each Event ID
 
+
+CREATE VIEW IF NOT EXISTS cisco_o11y.v_asa_logs_parsed
+AS
 select
     grok(message,'<%{POSINT:priority}>%{SYSLOGTIMESTAMP:timestamp} %{HOSTNAME:device} %%{WORD:facility}-%{INT:severity}-%{INT:event_id}: %{GREEDYDATA:asa_message}') as m,
     
@@ -168,4 +171,22 @@ select
 from cisco_o11y.asa_logs_stream
 where m['event_id'] in ['302013', '302014', '302015', '302016', '302020', '302021', 
                          '305011', '305012', '106023', '106015', '106001',
-                         '313001', '313004', '313005', '400013', '113004', '113015', '713172']
+                         '313001', '313004', '313005', '400013', '113004', '113015', '713172'];
+
+CREATE EXTERNAL STREAM IF NOT EXISTS cisco_o11y.parsed_asa_logs_stream_timeplus (
+    raw string
+)
+SETTINGS type = 'kafka', brokers = 'redpanda:9092', topic = 'cisco_asa_parsed_timeplus', data_format='RawBLOB';
+
+
+CREATE MATERIALIZED VIEW IF NOT EXISTS cisco_o11y.mv_asa_logs_parsed
+INTO cisco_o11y.parsed_asa_logs_stream_timeplus
+AS
+select map_update(m, m1) AS raw from cisco_o11y.v_asa_logs_parsed
+
+
+-- read from kafka topic parsed by logstash
+CREATE EXTERNAL STREAM IF NOT EXISTS cisco_o11y.parsed_asa_logs_stream_logstash (
+    raw string
+)
+SETTINGS type = 'kafka', brokers = 'redpanda:9092', topic = 'cisco_asa_parsed_logstash', data_format='RawBLOB';
