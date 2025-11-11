@@ -90,9 +90,9 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
         -- Severity 2 - Critical
         message_id IN ('106001', '108003'), 2,
         -- Severity 3 - Error  
-        message_id IN ('212003', '212004', '304003', '313004', '313005', '318107', '202010', '313001'), 3,
+        message_id IN ('212003', '212004', '304003', '313005', '318107', '202010', '313001'), 3,
         -- Severity 4 - Warning
-        message_id IN ('106023', '106015', '113015', '400013', '400038', '400043', '400044', '400048', '733102', '733104', '733105'), 4,
+        message_id IN ('106023', '106015', '113015', '313004', '400013', '400038', '400043', '400044', '400048', '733102', '733104', '733105'), 4,
         -- Severity 5 - Notification
         message_id IN ('502111', '718012', '718015', '750004'), 5,
         -- Severity 6 - Informational
@@ -211,6 +211,12 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
     icmp_type uint8 DEFAULT (rand(79) % 18),
     icmp_code uint8 DEFAULT (rand(80) % 16),
     
+    -- ICMP sequence number (for ICMP connection tracking)
+    icmp_seq uint16 DEFAULT (rand(94) % 65536),
+    
+    -- RX ring number (for ICMP connection tracking)
+    rx_ring_num uint8 DEFAULT (rand(95) % 8),
+    
     -- Duration calculation helpers
     duration_seconds uint16 DEFAULT (rand(81) % 3600),
     
@@ -227,7 +233,7 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
     ], (rand(82) % 4) + 1),
     
     -- Connection direction
-    direction string DEFAULT array_element(['inbound', 'outbound'], (rand(83) % 2) + 1),
+    direction string DEFAULT array_element(['Inbound', 'Outbound'], (rand(83) % 2) + 1),
     
     -- Filename (for FTP)
     filename string DEFAULT concat(
@@ -273,7 +279,8 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
                 'Teardown ', upper(protocol), ' connection ', to_string(connection_id),
                 ' for ', src_interface, ':', src_ip, '/', to_string(src_port),
                 ' to ', dst_interface, ':', dst_ip, '/', to_string(dst_port),
-                ' duration ', duration, ' bytes ', to_string(bytes_sent), ' ', tcp_flags
+                ' duration ', duration, ' bytes ', to_string(bytes_sent), ' ', tcp_flags, 
+                ' ', to_string(src_port), ' ', to_string(rx_ring_num)
             ),
             
             message_id = '302015', concat(
@@ -288,16 +295,20 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
                 'Teardown ', upper(protocol), ' connection ', to_string(connection_id),
                 ' for ', src_interface, ':', src_ip, '/', to_string(src_port),
                 ' to ', dst_interface, ':', dst_ip, '/', to_string(dst_port),
-                ' duration ', duration, ' bytes ', to_string(bytes_sent)
+                ' duration ', duration, ' bytes ', to_string(bytes_sent),
+                ' ', to_string(connection_id), ' ', to_string(src_port), ' ', to_string(rx_ring_num)
             ),
             
             message_id = '302020', concat(
-                'Built ', direction, ' ICMP connection for faddr ', dst_ip, '/0 gaddr ', nat_dst_ip, '/0 laddr ', src_ip, '/0'
+                'Built ', direction, ' ICMP connection for faddr ', dst_ip, '/', to_string(icmp_seq),
+                ' gaddr ', nat_dst_ip, '/', to_string(icmp_seq),
+                ' laddr ', src_ip, '/', to_string(icmp_seq)
             ),
             
             message_id = '302021', concat(
-                'Teardown ICMP connection for faddr ', dst_ip, '/0 gaddr ', nat_dst_ip, '/0 laddr ', src_ip, '/0',
-                ' duration ', duration, ' bytes ', to_string(bytes_sent)
+                'Teardown ICMP connection for faddr ', dst_ip, '/', to_string(icmp_seq),
+                ' gaddr ', nat_dst_ip, '/', to_string(icmp_seq),
+                ' laddr ', src_ip, '/', to_string(icmp_seq)
             ),
             
             message_id = '302003', concat(
@@ -320,8 +331,8 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
             
             -- ========== ACCESS CONTROL (106xxx) ==========
             message_id = '106001', concat(
-                'Deny ', lower(protocol), ' reverse path check from ', src_ip, ' to ', dst_ip,
-                ' on interface ', src_interface
+                direction, ' ', upper(protocol), ' connection denied from ', src_ip, '/', to_string(src_port),
+                ' to ', dst_ip, '/', to_string(dst_port), ' flags ', tcp_flags, ' on interface ', src_interface
             ),
             
             message_id = '106015', concat(
