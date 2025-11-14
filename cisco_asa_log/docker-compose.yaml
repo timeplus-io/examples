@@ -1,6 +1,7 @@
 services:
   timeplus:
     image: timeplus/timeplus-enterprise:3.0.2
+    platform: linux/amd64
     ports:
       - "8000:8000"
       - "8463:8463"

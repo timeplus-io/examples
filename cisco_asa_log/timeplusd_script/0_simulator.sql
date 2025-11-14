@@ -20,7 +20,7 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
         4
     )),
     
-    -- Comprehensive message ID list from all categories
+    -- Message ID list (REMOVED only severity 1 messages)
     message_id string DEFAULT array_element([
         -- Informational messages (302xxx - Connection tracking)
         '302013', '302014', '302015', '302016', '302020', '302021',
@@ -31,10 +31,7 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
         '109001', '109005', '109007',
         -- Informational (113xxx - AAA)
         '113004', '113015',
-        -- Informational (101xxx-105xxx - Failover/HA)
-        '101001', '101002', '103002', '104004', '104500', '104502',
-        '105003', '105004',
-        -- Informational (212xxx - SNMP)
+        -- Informational (212xxx - SNMP) - Severity 3
         '212003', '212004',
         -- Informational (303xxx - FTP)
         '303002',
@@ -52,27 +49,25 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
         '718012', '718015', '718019', '718021', '718023',
         -- Informational (710xxx - TCP access)
         '710002', '710003',
-        -- Informational (318xxx - OSPF)
+        -- Informational (318xxx - OSPF) - Severity 3
         '318107',
         
+        -- Critical messages (106xxx - Deny/Access control) - Severity 2
+        '106001',
         -- Warning messages (106xxx - Deny/Access control)
-        '106001', '106015', '106023', '106100',
+        '106015', '106023', '106100',
         -- Warning (313xxx - ICMP)
         '313001', '313004', '313005', '313008', '313009',
-        -- Warning (304xxx - URL timeout)
+        -- Warning (304xxx - URL timeout) - Severity 3
         '304003',
         -- Warning (733xxx - Threat detection)
         '733102', '733104', '733105',
         -- Warning (750xxx - DoS protection)
         '750004',
         
-        -- Error messages (106xxx - Spoofing/Limits)
-        '106022', '106101',
-        -- Error (107xxx - RIP auth)
-        '107001',
-        -- Error (108xxx - SMTP threats)
+        -- Critical (108xxx - SMTP threats) - Severity 2
         '108003',
-        -- Error (202xxx - NAT exhaustion)
+        -- Error messages (202xxx - NAT exhaustion) - Severity 3
         '202010',
         -- Error (419xxx - VPN)
         '419002',
@@ -81,12 +76,11 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
         
         -- NAT (602xxx, 702xxx)
         '602303', '602304', '702307'
-    ], (rand(5) % 68) + 1),
+    ], (rand(5) % 57) + 1),
     
     -- Severity level (auto-determined from message ID)
+    -- NOW includes severity 2-7
     severity int8 DEFAULT multi_if(
-        -- Severity 1 - Alert
-        message_id IN ('101001', '101002', '103002', '104004', '104500', '104502', '105003', '105004', '106022', '106101', '107001'), 1,
         -- Severity 2 - Critical
         message_id IN ('106001', '108003'), 2,
         -- Severity 3 - Error  
@@ -168,7 +162,7 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
     
     -- Action (permit/deny)
     action string DEFAULT multi_if(
-        message_id IN ('106001', '106023', '106100', '313001', '313004', '313005'), 'deny',
+        message_id IN ('106023', '106100', '313001', '313004', '313005'), 'deny',
         'permit'
     ),
     
@@ -254,13 +248,8 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
     -- Error code
     error_code string DEFAULT concat('0x', hex((rand(88) % 65535))),
     
-    -- Failover reason
-    failover_reason string DEFAULT array_element([
-        'health check failed', 'interface down', 'manual switch', 'configuration sync failed'
-    ], (rand(89) % 4) + 1),
-    
     -- Priority (syslog priority = facility * 8 + severity)
-    -- Cisco ASA uses facility 23, so priority = 184 + severity (1-7)
+    -- Cisco ASA uses facility 23, so priority = 184 + severity (2-7)
     priority uint8 DEFAULT 184 + severity,
     
     -- Message text construction based on message_id
@@ -279,8 +268,7 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
                 'Teardown ', upper(protocol), ' connection ', to_string(connection_id),
                 ' for ', src_interface, ':', src_ip, '/', to_string(src_port),
                 ' to ', dst_interface, ':', dst_ip, '/', to_string(dst_port),
-                ' duration ', duration, ' bytes ', to_string(bytes_sent), ' ', tcp_flags, 
-                ' ', to_string(src_port), ' ', to_string(rx_ring_num)
+                ' duration ', duration, ' bytes ', to_string(bytes_sent), ' ', tcp_flags
             ),
             
             message_id = '302015', concat(
@@ -295,8 +283,7 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
                 'Teardown ', upper(protocol), ' connection ', to_string(connection_id),
                 ' for ', src_interface, ':', src_ip, '/', to_string(src_port),
                 ' to ', dst_interface, ':', dst_ip, '/', to_string(dst_port),
-                ' duration ', duration, ' bytes ', to_string(bytes_sent),
-                ' ', to_string(connection_id), ' ', to_string(src_port), ' ', to_string(rx_ring_num)
+                ' duration ', duration, ' bytes ', to_string(bytes_sent)
             ),
             
             message_id = '302020', concat(
@@ -347,24 +334,15 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
             ),
             
             message_id = '106100', concat(
-                'Access-list "', acl_name, '" denied ', lower(protocol), ' ',
+                'access-list "', acl_name, '" denied ', lower(protocol), ' ',
                 src_interface, '/', src_ip, '(', to_string(src_port), ') -> ',
                 dst_interface, '/', dst_ip, '(', to_string(dst_port), ') hit-cnt 1'
-            ),
-            
-            message_id = '106022', concat(
-                'Deny ', lower(protocol), ' connection spoof from ', src_ip, ' to ', dst_ip,
-                ' on interface ', src_interface
-            ),
-            
-            message_id = '106101', concat(
-                'The number of ACL log flows has reached limit (', to_string(rand(90) % 1000), ')'
             ),
             
             -- ========== ICMP MESSAGES (313xxx) ==========
             message_id = '313001', concat(
                 'Denied ICMP type=', to_string(icmp_type), ', code=', to_string(icmp_code),
-                ' from ', src_ip, ' on interface ', src_interface, ' due to rate limit'
+                ' from ', src_ip, ' on interface ', src_interface
             ),
             
             message_id = '313004', concat(
@@ -432,16 +410,6 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
                 'Group = ', vpn_group, ', IP = ', src_ip, ', Assigned private IP = ', vpn_private_ip
             ),
             
-            -- ========== FAILOVER MESSAGES (101xxx-105xxx) ==========
-            message_id = '101001', '(Primary) Failover cable OK.',
-            message_id = '101002', '(Primary) Bad failover cable.',
-            message_id = '103002', concat('(Primary) Other firewall network interface ', src_interface, ' OK.'),
-            message_id = '104004', '(Primary) Switching to OK.',
-            message_id = '104500', concat('(Primary) Switching to ACTIVE (cause: ', failover_reason, ')'),
-            message_id = '104502', '(Primary) Becoming Backup unit failed.',
-            message_id = '105003', concat('(Primary) Monitoring on interface ', src_interface, ' waiting'),
-            message_id = '105004', concat('(Primary) Monitoring on interface ', src_interface, ' normal'),
-            
             -- ========== SNMP (212xxx) ==========
             message_id = '212003', concat(
                 'Unable to receive an SNMP request on interface ', src_interface, 
@@ -458,7 +426,7 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
             message_id = '303002', concat(
                 'FTP connection from ', src_interface, ':', src_ip, '/', to_string(src_port), 
                 ' to ', dst_interface, ':', dst_ip, '/', to_string(dst_port), 
-                ', user ', username, ' action file ', filename
+                ', user ', username, ' ', action, ' file ', filename
             ),
             
             -- ========== URL/WEB (304xxx, 314xxx) ==========
@@ -540,14 +508,11 @@ CREATE RANDOM STREAM cisco_asa_simulator.cisco_asa_logs (
             ),
             
             -- ========== ERROR MESSAGES ==========
-            message_id = '107001', concat(
-                'RIP auth failed from ', src_ip, ': version=2, type=string, mode=string, sequence=', 
-                to_string(rand(99) % 1000), ' on interface ', src_interface
-            ),
-            
             message_id = '108003', concat(
-                'Terminating SMTP connection; malicious pattern detected in the mail address from ', 
-                src_interface, ':', src_ip, '/', to_string(src_port)
+                'Terminating ESMTP/SMTP connection; malicious pattern detected in the mail address from ',
+                src_interface, ':', src_ip, '/', to_string(src_port), ' to ',
+                dst_interface, ':', dst_ip, '/', to_string(dst_port), '. Data: ',
+                array_element(['phishing attempt', 'malware detected', 'spam pattern', 'exploit code'], (rand(90) % 4) + 1)
             ),
             
             message_id = '202010', concat(
