@@ -1,6 +1,6 @@
 CREATE STREAM s2s_stream(_index string, host string, source string, sourcetype string, _raw string, fields map(string, string));
 
-CREATE EXTERNAL STREAM s2s_input settings type='splunk-s2s', tcp_port=9997, target_stream='s2s_stream';
+CREATE INPUT s2s_input settings type='splunk-s2s', tcp_port=9997, target_stream='s2s_stream';
 
 SELECT * FROM s2s_sink;
 

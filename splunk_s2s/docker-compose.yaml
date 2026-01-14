@@ -44,7 +44,7 @@ services:
       - splunk-network
 
   timeplus:
-    image: timeplus/timeplus-enterprise:3.0.3-rc.19
+    image: timeplus/timeplus-enterprise:3.0.3-rc.27
     platform: linux/amd64
     ports:
       - 8002:8000
