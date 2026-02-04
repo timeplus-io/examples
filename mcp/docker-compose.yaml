@@ -1,0 +1,23 @@
+services:
+
+  timeplus:
+    image: timeplus/timeplus-enterprise:3.1.2-rc.2
+    platform: linux/amd64
+    ports:
+      - 8000:8000
+      - 8463:8463
+      - 8123:8123
+      - 3218:3218
+      - 3001:3001
+    environment:
+      - ENABLE_DATA_PREALLOCATE=false
+      - MCP_ENABLED=true
+      - MCP_TRANSPORT=http
+      - MCP_PORT=3001
+
+    volumes:
+      - timeplus_data:/timeplus/data/
+
+volumes:
+  timeplus_data:
+    driver: local
